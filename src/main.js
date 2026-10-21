@@ -2,13 +2,17 @@ import './style.css';
 import gsap from 'gsap';
 import { animate, inView, stagger } from 'motion';
 import fallback from './services.fallback.json';
-import { initHero } from './hero.js';
 
 document.getElementById('yr').textContent = new Date().getFullYear();
 
 // Hero (guard so a WebGL failure never breaks the page)
-try { initHero(document.getElementById('hero-canvas')); }
-catch (err) { console.warn('3D hero unavailable:', err.message); document.getElementById('hero').classList.add('no-webgl'); }
+// Lazy-load the Three.js hero after first paint; the static fallback image + HTML text stay for crawlers / no-WebGL.
+const loadHero = () => import('./hero.js').then(({ initHero }) => {
+  const canvas = document.getElementById('hero-canvas');
+  initHero(canvas);
+  requestAnimationFrame(() => { canvas.classList.remove('opacity-0'); document.getElementById('hero-fallback').classList.add('opacity-0'); });
+}).catch(err => console.warn('3D hero unavailable:', err.message));
+if (!matchMedia('(prefers-reduced-motion: reduce)').matches) ('requestIdleCallback' in window ? requestIdleCallback(loadHero, { timeout: 1500 }) : setTimeout(loadHero, 300));
 
 // GSAP: flashing banner + marquee + legend blink
 gsap.to('#flash-banner', { backgroundColor: '#ff6a1a', duration: 0.6, repeat: -1, yoyo: true, ease: 'steps(1)' });

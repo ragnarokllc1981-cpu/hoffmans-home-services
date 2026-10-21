@@ -3,8 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hoffman's Home Services | ICA-Certified Home Inspections · Wayne & Oakland County, MI</title>
-  <meta name="description" content="ICA-certified home inspections, small engine repair, light handyman, and cleaning coordination in Wayne and Oakland Counties, Michigan. Based in Livonia." />
+  <title>Home Inspections in Livonia, MI | Hoffman&#39;s Home Services</title>
+  <meta name="description" content="Certified home inspections plus handyman and small engine repair for Wayne &amp; Oakland County, MI. Call 313-643-0815." />
+  <link rel="canonical" href="%SITE%/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="%SITE%/" />
+  <meta property="og:site_name" content="Hoffman&#39;s Home Services" />
+  <meta property="og:title" content="Home Inspections in Livonia, MI | Hoffman&#39;s Home Services" />
+  <meta property="og:description" content="Certified home inspections plus handyman and small engine repair for Wayne &amp; Oakland County, MI. Call 313-643-0815." />
+  <meta property="og:image" content="%SITE%/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="3D cutaway of a house showing wood framing, glowing electrical wiring, and HVAC ductwork" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Home Inspections in Livonia, MI | Hoffman&#39;s Home Services" />
+  <meta name="twitter:description" content="Certified home inspections plus handyman and small engine repair for Wayne &amp; Oakland County, MI. Call 313-643-0815." />
+  <meta name="twitter:image" content="%SITE%/og-image.jpg" />
+  <!-- Google Search Console: uncomment and paste token after verifying the property -->
+  <!-- <meta name="google-site-verification" content="TOKEN" /> -->
+  <link rel="preload" as="image" href="/hero-fallback.webp" fetchpriority="high" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":["HomeAndConstructionBusiness","LocalBusiness"],"name":"Hoffman's Home Services","url":"%SITE%/","telephone":"+1-313-643-0815","email":"ragnarokllc1981@gmail.com","address":{"@type":"PostalAddress","addressLocality":"Livonia","addressRegion":"MI","addressCountry":"US"},"areaServed":[{"@type":"AdministrativeArea","name":"Wayne County, MI"},{"@type":"AdministrativeArea","name":"Oakland County, MI"}],"parentOrganization":{"@type":"Organization","name":"Ragnarok LLC"},"hasOfferCatalog":{"@type":"OfferCatalog","name":"Services","itemListElement":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"Home Inspection"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Small Engine Repair"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Handyman Services"}}]}}</script>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏠</text></svg>" />
   <link rel="stylesheet" href="/src/style.css" />
 </head>
@@ -29,7 +47,8 @@
     <!-- HERO -->
     <section id="hero" class="relative h-[200vh]">
       <div class="sticky top-0 h-screen w-full overflow-hidden">
-        <canvas id="hero-canvas" class="absolute inset-0 w-full h-full"></canvas>
+        <img id="hero-fallback" src="/hero-fallback.webp" width="1440" height="900" fetchpriority="high" alt="3D cutaway of a Michigan house with the walls peeled back to reveal wood framing, glowing electrical wiring, and HVAC ductwork" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-700" />
+        <canvas id="hero-canvas" class="absolute inset-0 w-full h-full opacity-0 transition-opacity duration-700" aria-hidden="true"></canvas>
         <div class="absolute inset-0 pointer-events-none bg-gradient-to-r from-ink via-ink/60 to-transparent"></div>
         <div class="relative z-10 h-full mx-auto max-w-7xl px-4 flex items-center">
           <div class="max-w-xl pointer-events-auto" id="hero-copy">
@@ -125,8 +144,8 @@
 
   <footer class="border-t border-zinc-800 py-10 text-sm text-zinc-500">
     <div class="mx-auto max-w-7xl px-4 flex flex-col sm:flex-row gap-4 justify-between">
-      <p>© <span id="yr"></span> Hoffman's Home Services, a DBA of Ragnarok LLC · Livonia, Michigan</p>
-      <p><a href="mailto:ragnarokllc1981@gmail.com" class="hover:text-volt">ragnarokllc1981@gmail.com</a> · <a href="tel:3136430815" class="hover:text-volt">313-643-0815</a></p>
+      <address class="not-italic" id="nap"><strong class="text-zinc-300">Hoffman's Home Services</strong>, Livonia, MI · <a href="tel:+13136430815" class="hover:text-volt">(313) 643-0815</a> · <a href="mailto:ragnarokllc1981@gmail.com" class="hover:text-volt">ragnarokllc1981@gmail.com</a></address>
+      <p>© <span id="yr">2026</span> Hoffman's Home Services, a DBA of Ragnarok LLC · Serving Wayne &amp; Oakland Counties</p>
     </div>
   </footer>
   <script type="module" src="/src/main.js"></script>
