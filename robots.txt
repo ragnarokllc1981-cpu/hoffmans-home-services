@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://ragnarokllc1981-cpu.github.io/hoffmans-home-services/sitemap.xml
