@@ -100,7 +100,7 @@ export function initHero(canvas) {
   const roofs = [];
   for (const s of [-1, 1]) {
     const pivot = new THREE.Group(); pivot.position.set(0, H + ROOF, 0);
-    const r = new THREE.Mesh(new THREE.BoxGeometry(W + 0.6, 0.12, rafterLen + 0.4), roofMat);
+    const r = new THREE.Mesh(new THREE.BoxGeometry(W + 0.6, 0.12, rafterLen + 0.4), Object.assign(roofMat.clone(), { transparent: true }));
     r.position.set(0, 0, s * (rafterLen + 0.4) / 2); pivot.add(r);
     const t = new THREE.Mesh(new THREE.BoxGeometry(W + 0.62, 0.05, 0.1), trim); t.position.set(0, 0.06, s * (rafterLen + 0.4)); pivot.add(t);
     pivot.rotation.x = s * pitch; shell.add(pivot); roofs.push({ pivot, s });
@@ -150,15 +150,15 @@ export function initHero(canvas) {
       pivot.position.y = -k * 0.2;
       pivot.children.forEach(c => { c.material.transparent = true; c.material.opacity = 1 - k * 0.85; });
     });
-    roofs.forEach(({ pivot, s }) => { pivot.rotation.x = s * (pitch + e * 1.2); pivot.position.y = H + ROOF + e * 1.8; });
+    roofs.forEach(({ pivot, s }) => { pivot.rotation.x = s * (pitch + e * 0.5); pivot.position.y = H + ROOF + e * 3.5; pivot.position.z = s * e * 3; pivot.children.forEach(c => { c.material.transparent = true; c.material.opacity = 1 - e * 0.8; }); });
     gables.forEach(({ g, s }) => { g.position.x = s * (W / 2 + 0.07 + e * 3); g.material.opacity = 1 - e; });
     wireMat.color.setHSL(0.22, 1, 0.5 + 0.15 * Math.sin(t * 6));
     pulses.forEach(p => { p.userData.t = (p.userData.t + dt * 0.35) % 1; p.position.copy(p.userData.curve.getPointAt(p.userData.t)); });
     // Orbit + parallax
     const ang = 0.6 + Math.sin(t * 0.15) * 0.35 + mouseX * 0.5;
-    const r = 15 - e * 2.5;
+    const r = 19 - e * 2.5;
     camera.position.set(Math.sin(ang) * r - 3, 6 + mouseY * -2 + e * 1.5, Math.cos(ang) * r);
-    camera.lookAt(-2.2, 0.6, 0);
+    camera.lookAt(-3.2, 0.8, 0);
     renderer.render(scene, camera);
     requestAnimationFrame(frame);
   }
