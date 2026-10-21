@@ -1,0 +1,108 @@
+// Generate city landing pages (<slug>/index.html) from content/cities.js. Run before vite build.
+import fs from 'node:fs';
+import { cities } from '../content/cities.js';
+const { SITE } = JSON.parse(fs.readFileSync('site.config.json', 'utf8'));
+const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+const ld = url => JSON.stringify({ "@context": "https://schema.org", "@type": ["HomeAndConstructionBusiness", "LocalBusiness"], name: "Hoffman's Home Services", url, telephone: "+1-313-643-0815", email: "ragnarokllc1981@gmail.com", address: { "@type": "PostalAddress", addressLocality: "Livonia", addressRegion: "MI", addressCountry: "US" }, areaServed: [{ "@type": "AdministrativeArea", name: "Wayne County, MI" }, { "@type": "AdministrativeArea", name: "Oakland County, MI" }], parentOrganization: { "@type": "Organization", name: "Ragnarok LLC" }, hasOfferCatalog: { "@type": "OfferCatalog", name: "Services", itemListElement: ["Home Inspection", "Small Engine Repair", "Handyman Services"].map(n => ({ "@type": "Offer", itemOffered: { "@type": "Service", name: n } })) } });
+export const areasList = prefix => `<nav aria-label="Areas we serve" class="mx-auto max-w-7xl px-4 mb-6"><p class="font-semibold text-zinc-300 mb-2">Areas we serve</p><ul class="flex flex-wrap gap-x-5 gap-y-1">${cities.map(c => `<li><a href="${prefix}${c.slug}/" class="hover:text-volt">${c.name}, MI</a></li>`).join('')}</ul></nav>`;
+export const NAP = `<address class="not-italic" id="nap"><strong class="text-zinc-300">Hoffman's Home Services</strong>, Livonia, MI · <a href="tel:+13136430815" class="hover:text-volt">(313) 643-0815</a> · <a href="mailto:ragnarokllc1981@gmail.com" class="hover:text-volt">ragnarokllc1981@gmail.com</a></address>`;
+const words = s => s.replace(/<[^>]+>/g, ' ').split(/\s+/).filter(w => /[A-Za-z0-9]/.test(w)).length;
+const report = [];
+for (const c of cities) {
+  if (c.title.length >= 60) throw new Error(`title too long: ${c.slug} ${c.title.length}`);
+  if (c.description.length >= 155) throw new Error(`description too long: ${c.slug} ${c.description.length}`);
+  const url = `${SITE}/${c.slug}/`;
+  const body = c.sections.map(([h, p]) => `<h2 class="font-display text-2xl sm:text-3xl font-black mt-12">${esc(h)}</h2>\n<p class="mt-4 text-zinc-300 leading-relaxed">${esc(p)}</p>`).join('\n');
+  const html = `<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>${esc(c.title)}</title>
+  <meta name="description" content="${esc(c.description)}" />
+  <link rel="canonical" href="${url}" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="${url}" />
+  <meta property="og:site_name" content="Hoffman's Home Services" />
+  <meta property="og:title" content="${esc(c.title)}" />
+  <meta property="og:description" content="${esc(c.description)}" />
+  <meta property="og:image" content="${SITE}/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="${esc(c.title)}" />
+  <meta name="twitter:description" content="${esc(c.description)}" />
+  <meta name="twitter:image" content="${SITE}/og-image.jpg" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏠</text></svg>" />
+  <script type="application/ld+json">${ld(url)}</script>
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body class="bg-ink text-zinc-100 antialiased">
+  <div id="flash-banner" class="fixed top-0 inset-x-0 z-50 bg-volt text-ink text-xs sm:text-sm font-bold tracking-wide text-center py-1.5">
+    ⚡ NOW BOOKING ${c.name.toUpperCase()} INSPECTIONS · CALL <a href="tel:+13136430815" class="underline">313-643-0815</a>
+  </div>
+  <header class="fixed top-8 inset-x-0 z-40 bg-ink/80 backdrop-blur">
+    <nav class="mx-auto max-w-7xl px-4 py-2 flex items-center justify-between">
+      <a href="../" class="font-display text-lg sm:text-xl font-black tracking-tight">HOFFMAN'S<span class="text-volt">.</span> <span class="hidden sm:inline font-light text-zinc-400">HOME SERVICES</span></a>
+      <div class="flex items-center gap-2 sm:gap-5 text-sm">
+        <a href="../#services" class="hidden md:inline hover:text-volt">Services</a>
+        <a href="../#area" class="hidden md:inline hover:text-volt">Service Area</a>
+        <a href="../#book" class="rounded-full bg-volt text-ink font-bold px-4 py-2 hover:scale-105 transition">Book Now</a>
+      </div>
+    </nav>
+  </header>
+  <main class="pt-28">
+    <section class="relative overflow-hidden border-b border-zinc-800 bg-gradient-to-br from-zinc-950 via-ink to-zinc-900">
+      <div class="mx-auto max-w-5xl px-4 py-16 sm:py-24">
+        <p class="city-in inline-flex rounded-full border border-volt/40 bg-volt/10 px-3 py-1 text-xs font-semibold text-volt">ICA CERTIFIED · ${c.county.toUpperCase()} COUNTY, MI</p>
+        <h1 class="city-in mt-5 font-display text-4xl sm:text-6xl font-black leading-[1.0] tracking-tight">${esc(c.h1)}</h1>
+        <p class="city-in mt-5 text-lg text-zinc-300 max-w-2xl">ICA certified home inspections, light handyman work, small engine repair, and cleaning coordination for ${c.name} homeowners, from our base in Livonia.</p>
+        <div class="city-in mt-8 flex flex-wrap gap-3">
+          <a href="../#book" class="rounded-xl bg-volt text-ink font-black px-6 py-3.5 shadow-[0_0_40px_-5px] shadow-volt/60 hover:scale-105 transition">Book an Inspection →</a>
+          <a href="tel:+13136430815" class="rounded-xl border border-zinc-600 px-6 py-3.5 font-semibold hover:border-volt hover:text-volt transition">Call 313-643-0815</a>
+        </div>
+      </div>
+    </section>
+    <div class="relative z-10 bg-ember text-ink overflow-hidden py-3 -rotate-1 scale-105">
+      <div id="marquee" class="flex whitespace-nowrap font-display font-black text-xl uppercase gap-10 will-change-transform">
+        <span>${esc(c.banner)} ★ ${c.county.toUpperCase()} COUNTY ★</span><span aria-hidden="true">${esc(c.banner)} ★ ${c.county.toUpperCase()} COUNTY ★</span><span aria-hidden="true">${esc(c.banner)} ★ ${c.county.toUpperCase()} COUNTY ★</span>
+      </div>
+    </div>
+    <article class="mx-auto max-w-3xl px-4 py-12">
+${body}
+      <h2 class="font-display text-2xl sm:text-3xl font-black mt-12">Services for ${c.name} homes</h2>
+      <ul class="mt-4 grid sm:grid-cols-2 gap-3 text-sm">
+        <li><a class="block rounded-xl border border-zinc-800 p-4 hover:border-volt" href="../#services"><strong class="text-volt">ICA certified home inspections</strong><br />Pre-purchase, pre-listing, and maintenance inspections.</a></li>
+        <li><a class="block rounded-xl border border-zinc-800 p-4 hover:border-volt" href="../#services"><strong class="text-volt">Light handyman</strong><br />Inspection-report fixes and punch lists.</a></li>
+        <li><a class="block rounded-xl border border-zinc-800 p-4 hover:border-volt" href="../#services"><strong class="text-volt">Small engine repair</strong><br />Mowers, snowblowers, generators, and more.</a></li>
+        <li><a class="block rounded-xl border border-zinc-800 p-4 hover:border-volt" href="../#services"><strong class="text-volt">Cleaning coordination</strong><br />Move-in and move-out cleans with Cozy &amp; Clean.</a></li>
+      </ul>
+      <div class="mt-12 rounded-2xl border border-volt/40 bg-volt/5 p-6 sm:p-8">
+        <p class="font-display text-2xl font-black">Ready to schedule in ${c.name}?</p>
+        <p class="mt-2 text-zinc-300">We serve Wayne and Oakland Counties only. <a href="../#book" class="text-volt underline">Request a booking online</a> or call <a href="tel:+13136430815" class="text-volt underline">313-643-0815</a>.</p>
+      </div>
+      <p class="mt-8 text-sm text-zinc-500">Also serving: ${cities.filter(o => o.slug !== c.slug).map(o => `<a href="../${o.slug}/" class="hover:text-volt underline">${o.name}</a>`).join(' · ')}</p>
+    </article>
+  </main>
+  <footer class="border-t border-zinc-800 py-10 text-sm text-zinc-500">
+    ${areasList('../')}
+    <div class="mx-auto max-w-7xl px-4 flex flex-col sm:flex-row gap-4 justify-between">
+      ${NAP}
+      <p>© 2026 Hoffman's Home Services, a DBA of Ragnarok LLC · Serving Wayne &amp; Oakland Counties</p>
+    </div>
+  </footer>
+  <script type="module" src="/src/city.js"></script>
+</body>
+</html>
+`;
+  fs.mkdirSync(c.slug, { recursive: true });
+  fs.writeFileSync(`${c.slug}/index.html`, html);
+  const main = html.slice(html.indexOf('<main'), html.indexOf('</main>'));
+  report.push(`${c.slug}: ${words(c.sections.map(s => s.join(' ')).join(' '))} unique words (${words(main)} in <main>), title ${c.title.length}, desc ${c.description.length}`);
+}
+// Homepage footer areas list
+let home = fs.readFileSync('index.html', 'utf8');
+home = home.replace(/<!-- AREAS:START -->[\s\S]*?<!-- AREAS:END -->/, `<!-- AREAS:START -->${areasList('./')}<!-- AREAS:END -->`);
+fs.writeFileSync('index.html', home);
+fs.writeFileSync('cities.json', JSON.stringify(cities.map(c => c.slug)));
+console.log(report.join('\n'));
