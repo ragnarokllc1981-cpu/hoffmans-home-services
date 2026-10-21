@@ -1,6 +1,6 @@
 // Generate city landing pages (<slug>/index.html) from content/cities.js. Run before vite build.
 import fs from 'node:fs';
-import { cities } from '../content/cities.js';
+import { cities, INSPECTION_SCOPE } from '../content/cities.js';
 const { SITE } = JSON.parse(fs.readFileSync('site.config.json', 'utf8'));
 const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
 const ld = url => JSON.stringify({ "@context": "https://schema.org", "@type": ["HomeAndConstructionBusiness", "LocalBusiness"], name: "Hoffman's Home Services", url, telephone: "+1-313-643-0815", email: "ragnarokllc1981@gmail.com", address: { "@type": "PostalAddress", addressLocality: "Livonia", addressRegion: "MI", addressCountry: "US" }, areaServed: [{ "@type": "AdministrativeArea", name: "Wayne County, MI" }, { "@type": "AdministrativeArea", name: "Oakland County, MI" }], parentOrganization: { "@type": "Organization", name: "Ragnarok LLC" }, hasOfferCatalog: { "@type": "OfferCatalog", name: "Services", itemListElement: ["Home Inspection", "Small Engine Repair", "Handyman Services"].map(n => ({ "@type": "Offer", itemOffered: { "@type": "Service", name: n } })) } });
@@ -12,7 +12,7 @@ for (const c of cities) {
   if (c.title.length >= 60) throw new Error(`title too long: ${c.slug} ${c.title.length}`);
   if (c.description.length >= 155) throw new Error(`description too long: ${c.slug} ${c.description.length}`);
   const url = `${SITE}/${c.slug}/`;
-  const body = c.sections.map(([h, p]) => `<h2 class="font-display text-2xl sm:text-3xl font-black mt-12">${esc(h)}</h2>\n<p class="mt-4 text-zinc-300 leading-relaxed">${esc(p)}</p>`).join('\n');
+  const body = c.sections.map(([h, p], i) => `<h2 class="font-display text-2xl sm:text-3xl font-black mt-12">${esc(h)}</h2>\n<p class="mt-4 text-zinc-300 leading-relaxed">${esc(p)}</p>` + (i === (c.scopeAfter ?? 1) ? `\n<p class="inspection-scope mt-4 rounded-xl border border-volt/40 bg-volt/5 p-4 text-sm text-zinc-200"><strong class="text-volt">Inspection scope:</strong> ${esc(INSPECTION_SCOPE)}</p>` : '')).join('\n');
   const html = `<!doctype html>
 <html lang="en">
 <head>
@@ -72,7 +72,7 @@ for (const c of cities) {
 ${body}
       <h2 class="font-display text-2xl sm:text-3xl font-black mt-12">Services for ${c.name} homes</h2>
       <ul class="mt-4 grid sm:grid-cols-2 gap-3 text-sm">
-        <li><a class="block rounded-xl border border-zinc-800 p-4 hover:border-volt" href="../#services"><strong class="text-volt">ICA certified home inspections</strong><br />Pre-purchase, pre-listing, and maintenance inspections.</a></li>
+        <li><a class="block rounded-xl border border-zinc-800 p-4 hover:border-volt" href="../#services"><strong class="text-volt">ICA certified home inspections</strong><br />For any homeowner. A visual inspection of readily accessible systems and components.</a></li>
         <li><a class="block rounded-xl border border-zinc-800 p-4 hover:border-volt" href="../#services"><strong class="text-volt">Light handyman</strong><br />Inspection-report fixes and punch lists.</a></li>
         <li><a class="block rounded-xl border border-zinc-800 p-4 hover:border-volt" href="../#services"><strong class="text-volt">Small engine repair</strong><br />Mowers, snowblowers, generators, and more.</a></li>
         <li><a class="block rounded-xl border border-zinc-800 p-4 hover:border-volt" href="../#services"><strong class="text-volt">Cleaning coordination</strong><br />Move-in and move-out cleans with Cozy &amp; Clean.</a></li>

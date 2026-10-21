@@ -1,7 +1,10 @@
 // City landing page content. Facts are kept general unless verified (see research notes in each entry).
+// Inspection scope statement (shown in the inspection section of every city page).
+export const INSPECTION_SCOPE = "For any homeowner, whether you're buying, selling, or simply maintaining your home. Our home inspection is a visual inspection of the home's readily accessible systems and components.";
+
 export const cities = [
 {
-  slug: 'livonia', name: 'Livonia', county: 'Wayne',
+  slug: 'livonia', scopeAfter: 2, name: 'Livonia', county: 'Wayne',
   title: "Livonia, MI Home Inspector | Hoffman's Home Services",
   description: "ICA certified home inspections in Livonia, MI for 1950s-70s ranches, colonials, and split-levels. Basement, sump, and electrical checks. 313-643-0815.",
   h1: 'Home Inspections in Livonia, MI: Our Home Base',
@@ -14,7 +17,7 @@ export const cities = [
   ],
 },
 {
-  slug: 'westland', name: 'Westland', county: 'Wayne',
+  slug: 'westland', scopeAfter: 1, name: 'Westland', county: 'Wayne',
   title: "Westland, MI Home Inspections | Hoffman's Home Services",
   description: "Home inspections in Westland, MI for postwar ranches and bungalows. We check foundations, sump pumps, panels, and old plumbing. Call 313-643-0815.",
   h1: 'Westland Home Inspections for Postwar Neighborhoods',
@@ -27,7 +30,7 @@ export const cities = [
   ],
 },
 {
-  slug: 'canton', name: 'Canton', county: 'Wayne',
+  slug: 'canton', scopeAfter: 1, name: 'Canton', county: 'Wayne',
   title: "Canton, MI Home Inspector | Hoffman's Home Services",
   description: "Canton Township home inspections for 1970s-2000s subdivision homes. We check roofs, furnaces, sump pumps, and basements. ICA certified. 313-643-0815.",
   h1: 'Home Inspections in Canton Township Subdivisions',
@@ -35,12 +38,12 @@ export const cities = [
   sections: [
     ['From farmland to one of Wayne County\'s biggest communities', `Canton Township had about 11,000 residents in 1970 and nearly 99,000 by the 2020 census. Its growth took off in the 1970s once sewer and water lines were extended and I-275 made the whole metro area an easy commute, and the township says some years saw around 2,000 new homes. Construction slowed during the early-1980s recession, then picked up again through the rest of the 1980s, the larger-home subdivisions of the 1990s, and steady building after 2000.`],
     ["Why 'newer' doesn't mean 'no issues'", `A lot of Canton homes are 25 to 50 years old, which puts them squarely in the age range when big-ticket components come due at about the same time. Original furnaces, central air condensers, water heaters, and asphalt roofs from the 1980s and 1990s may be at or near the end of their typical lifespans, even in a house that looks great from the curb. We record approximate ages where we can find them so you can plan, not guess.`],
-    ['Production-built homes have patterns', `Tract and production builders reused the same floor plans street after street, so we often see the same details repeat across a subdivision, both good and bad. We pay attention to attic ventilation and bathroom fans that vent into the attic instead of outside, poured basement walls with shrinkage cracks, window and door flashing, deck ledger attachments, and grading that has settled over the years around the foundation. Sump pumps get a real test, not just a glance, because in a heavy Michigan spring the pump is what keeps a finished basement dry.`],
+    ['Production-built homes have patterns', `Tract and production builders reused the same floor plans street after street, so we often see the same details repeat across a subdivision, both good and bad. We pay attention to attic ventilation and bathroom fans that vent into the attic instead of outside, poured basement walls with shrinkage cracks, window and door flashing, deck ledger attachments, and grading that has settled over the years around the foundation. Accessible sump pumps get a close look and, where it's safe to do so, a basic operational check, because in a heavy Michigan spring the pump is what keeps a finished basement dry.`],
     ['Inspections for every stage', `We inspect for buyers, for sellers who want to get ahead of a buyer's inspector, and for owners who just want a maintenance checkup. Canton families also lean on us for mower and snowblower repair and, through Cozy & Clean, for move-out or move-in cleaning.`],
   ],
 },
 {
-  slug: 'plymouth', name: 'Plymouth', county: 'Wayne',
+  slug: 'plymouth', scopeAfter: 1, name: 'Plymouth', county: 'Wayne',
   title: "Plymouth, MI Home Inspections | Hoffman's Home Services",
   description: "Plymouth, MI home inspections for historic homes near downtown and postwar houses. Older wiring, foundations, and basements done right. 313-643-0815.",
   h1: 'Plymouth, MI Home Inspections, From Historic Homes to Postwar Builds',
@@ -53,7 +56,7 @@ export const cities = [
   ],
 },
 {
-  slug: 'farmington-hills', name: 'Farmington Hills', county: 'Oakland',
+  slug: 'farmington-hills', scopeAfter: 2, name: 'Farmington Hills', county: 'Oakland',
   title: "Farmington Hills Home Inspector | Hoffman's Home Services",
   description: "Farmington Hills, MI home inspections for 1960s-80s colonials, ranches, and tri-levels. Roofs, basements, panels, and HVAC reviewed. 313-643-0815.",
   h1: 'Farmington Hills Home Inspections for Mid-Century and 1980s Homes',
@@ -67,7 +70,7 @@ export const cities = [
   ],
 },
 {
-  slug: 'novi', name: 'Novi', county: 'Oakland',
+  slug: 'novi', scopeAfter: 1, name: 'Novi', county: 'Oakland',
   title: "Novi, MI Home Inspections | Hoffman's Home Services",
   description: "Novi, MI home inspections for 1990s-2000s colonials, new builds, and condos. We check walkout basements, roofs, HVAC, and grading. 313-643-0815.",
   h1: 'Novi Home Inspections for Newer Homes, Condos, and New Construction',
@@ -81,7 +84,7 @@ export const cities = [
   ],
 },
 {
-  slug: 'redford', name: 'Redford', county: 'Wayne',
+  slug: 'redford', scopeAfter: 1, name: 'Redford', county: 'Wayne',
   title: "Redford, MI Home Inspector | Hoffman's Home Services",
   description: "Redford Township home inspections for 1950s brick homes and older bungalows. Basements, sewer lines, electrical, and plumbing checked. 313-643-0815.",
   h1: 'Redford Township Home Inspections for 1950s Homes and Older Bungalows',
@@ -95,7 +98,7 @@ export const cities = [
   ],
 },
 {
-  slug: 'dearborn', name: 'Dearborn', county: 'Wayne',
+  slug: 'dearborn', scopeAfter: 1, name: 'Dearborn', county: 'Wayne',
   title: "Dearborn, MI Home Inspections | Hoffman's Home Services",
   description: "Dearborn home inspections for 1920s Ford-era homes, bungalows, and postwar brick houses. Basement flooding and old wiring checks. 313-643-0815.",
   h1: 'Dearborn Home Inspections, From Ford Homes to Postwar Brick',

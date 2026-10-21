@@ -1,9 +1,36 @@
 {
   "updated": "2026-10-21",
   "services": [
-    {"id":"inspection","title":"ICA-Certified Home Inspections","tag":"Anchor service","icon":"🏠","blurb":"Top-to-bottom pre-purchase, pre-listing, and maintenance inspections: structure, roof, electrical, plumbing, HVAC. Clear, photo-rich reports.","featured":true},
-    {"id":"small-engine","title":"Small Engine Repair","tag":"Mowers · Blowers · Generators","icon":"⚙️","blurb":"Tune-ups, carb cleaning, and repairs on mowers, snowblowers, trimmers, pressure washers, and generators."},
-    {"id":"handyman","title":"Light Handyman","tag":"Punch lists done right","icon":"🛠️","blurb":"Fixtures, doors, drywall patches, caulk, minor carpentry, and inspection-report fix-ups."},
-    {"id":"cleaning","title":"Cleaning Coordination","tag":"with Cozy & Clean","icon":"✨","blurb":"Move-in, move-out, and recurring cleans coordinated with our partner Cozy & Clean Home Services.","link":"https://cozyandcleanhome.com"}
+    {
+      "id": "inspection",
+      "title": "ICA Certified Home Inspections",
+      "tag": "Anchor service",
+      "icon": "🏠",
+      "blurb": "Home inspections for any homeowner: buying, selling, or simply maintaining your home. A visual inspection of the home's readily accessible systems and components, including structure, roof, electrical, plumbing, and HVAC, with a clear, photo-rich report.",
+      "featured": true,
+      "scope": "Visual inspection of readily accessible systems and components. Non-invasive, and not a guarantee or warranty."
+    },
+    {
+      "id": "small-engine",
+      "title": "Small Engine Repair",
+      "tag": "Mowers · Blowers · Generators",
+      "icon": "⚙️",
+      "blurb": "Tune-ups, carb cleaning, and repairs on mowers, snowblowers, trimmers, pressure washers, and generators."
+    },
+    {
+      "id": "handyman",
+      "title": "Light Handyman",
+      "tag": "Punch lists done right",
+      "icon": "🛠️",
+      "blurb": "Fixtures, doors, drywall patches, caulk, minor carpentry, and inspection-report fix-ups."
+    },
+    {
+      "id": "cleaning",
+      "title": "Cleaning Coordination",
+      "tag": "with Cozy & Clean",
+      "icon": "✨",
+      "blurb": "Move-in, move-out, and recurring cleans coordinated with our partner Cozy & Clean Home Services.",
+      "link": "https://cozyandcleanhome.com"
+    }
   ]
 }
