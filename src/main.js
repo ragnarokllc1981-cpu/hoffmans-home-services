@@ -52,12 +52,10 @@ function renderServices(services) {
   inView('#service-grid', () => { animate('.service-card', { opacity: [0, 1], y: [50, 0] }, { delay: stagger(0.1), duration: 0.6 }); });
 }
 renderServices(fallback.services);
-// Runtime content: static content/services.json (GitHub Pages), then /api/content (Node server), else bundled fallback.
+// Runtime content: static content/services.json, else bundled fallback.
 const BASE = import.meta.env.BASE_URL;
 (async () => {
-  for (const url of [`${BASE}content/services.json?v=${Date.now()}`, `${BASE}api/content`]) {
-    try { const r = await fetch(url, { cache: 'no-store' }); if (!r.ok) continue; const d = await r.json(); if (d?.services?.length) { renderServices(d.services); return; } } catch {}
-  }
+  try { const r = await fetch(`${BASE}content/services.json?v=${Date.now()}`, { cache: 'no-store' }); if (r.ok) { const d = await r.json(); if (d?.services?.length) renderServices(d.services); } } catch {}
 })();
 
 // Page-view beacon: only when a Node API is deployed (VITE_API_ENABLED=1). No-op on static hosting.
@@ -72,7 +70,7 @@ form.addEventListener('submit', async e => {
   if (!data.name || !data.phone || !data.email || !data.service || !data.county) {
     status.className = 'sm:col-span-2 text-sm text-ember'; status.textContent = 'Please fill in name, phone, email, service, and county.'; return;
   }
-  if (data.website) return; // honeypot
+  if (data._hp_fax_x) { status.className = 'sm:col-span-2 text-sm text-volt font-semibold'; status.textContent = "Got it! We'll reach out within one business day."; return; } // honeypot: never fail silently
   const bad = msg => { status.className = 'sm:col-span-2 text-sm text-ember'; status.textContent = msg; };
   if (!['Wayne', 'Oakland'].includes(data.county)) return bad('Sorry, we only serve Wayne and Oakland Counties, MI.');
   if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(data.email) || data.phone.replace(/\D/g, '').length < 10) return bad('Please enter a valid email and 10-digit phone number.');

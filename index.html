@@ -136,8 +136,8 @@
         <label class="field">County<select name="county" required><option value="">Select…</option><option>Wayne</option><option>Oakland</option></select></label>
         <label class="field">Preferred date<input name="preferredDate" type="date" /></label>
         <label class="field sm:col-span-2">Property address / details<textarea name="message" rows="4"></textarea></label>
-        <input name="website" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true" />
-        <button class="sm:col-span-2 rounded-xl bg-volt text-ink font-black py-4 text-lg hover:scale-[1.02] transition">Send Request</button>
+        <div class="absolute -left-[9999px] w-px h-px overflow-hidden" aria-hidden="true"><label>Leave blank<input name="_hp_fax_x" type="text" tabindex="-1" autocomplete="off" data-lpignore="true" data-1p-ignore /></label></div>
+        <button type="submit" class="sm:col-span-2 rounded-xl bg-volt text-ink font-black py-4 text-lg hover:scale-[1.02] transition">Send Request</button>
         <p id="form-status" class="sm:col-span-2 text-sm" role="status"></p>
       </form>
     </section>
