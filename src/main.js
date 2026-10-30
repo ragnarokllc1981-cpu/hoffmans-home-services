@@ -79,7 +79,12 @@ form.addEventListener('submit', async e => {
   const serviceTitle = document.querySelector(`#service-select option[value="${CSS.escape(data.service)}"]`)?.textContent || data.service;
   status.className = 'sm:col-span-2 text-sm text-zinc-400'; status.textContent = 'Sending…';
   try {
-    // Booking Boss intake: FormSubmit relays to the Ragnarok LLC inbox, which Booking Boss sweeps at 9 AM and 6 PM.
+    // Booking Boss intake: /api/leads (Vercel function, Gmail API) emails the Ragnarok LLC inbox, which Booking Boss
+    // sweeps at 9 AM and 6 PM. FormSubmit is the fallback if the function is unavailable.
+    const api = await fetch(`${BASE}api/leads`, {
+      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...data, page: location.href }),
+    }).catch(() => null);
+    if (api?.ok) { form.reset(); status.className = 'sm:col-span-2 text-sm text-volt font-semibold'; status.textContent = "Got it! We'll reach out within one business day."; return; }
     const payload = {
       _subject: `[Booking Request] ${serviceTitle} - ${data.name}`,
       _template: 'table', _captcha: 'false', _honey: '', _replyto: data.email,
