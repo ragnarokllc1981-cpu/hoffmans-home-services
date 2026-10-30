@@ -22,3 +22,4 @@ Edit `content/services.json`. The API re-reads it on each request, and the front
 `server/booking-boss.js` is a config stub. Set `BOOKING_BOSS_URL`/`BOOKING_BOSS_TOKEN` and map the fields once the real intake API is confirmed. Leads are always logged to `data/leads.jsonl` first.
 
 Hero debug: append `?peel=0` or `?peel=1` to pin the cross-section state.
+<!-- Hosted on Vercel (hoffmans-home-services, ragnarok-llc); canonical https://hoffmanshomeservices.com -->
