@@ -81,7 +81,7 @@ form.addEventListener('submit', async e => {
   try {
     // Booking Boss intake: /api/leads (Vercel function, Gmail API) emails the Ragnarok LLC inbox, which Booking Boss
     // sweeps at 9 AM and 6 PM. FormSubmit is the fallback if the function is unavailable.
-    const api = await fetch(`${BASE}api/leads`, {
+    const api = await fetch(`${BASE}api/leads/`, {
       method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...data, page: location.href }),
     }).catch(() => null);
     if (api?.ok) { form.reset(); status.className = 'sm:col-span-2 text-sm text-volt font-semibold'; status.textContent = "Got it! We'll reach out within one business day."; return; }
