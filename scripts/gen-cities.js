@@ -1,7 +1,7 @@
 // Generate city landing pages (<slug>/index.html) from content/cities.js. Run before vite build.
 import fs from 'node:fs';
 import { cities, INSPECTION_SCOPE } from '../content/cities.js';
-const { SITE } = JSON.parse(fs.readFileSync('site.config.json', 'utf8'));
+import { SITE } from './site.js';
 const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
 const ld = url => JSON.stringify({ "@context": "https://schema.org", "@type": ["HomeAndConstructionBusiness", "LocalBusiness"], name: "Hoffman's Home Services", url, telephone: "+1-313-643-0815", email: "ragnarokllc1981@gmail.com", address: { "@type": "PostalAddress", addressLocality: "Livonia", addressRegion: "MI", addressCountry: "US" }, areaServed: [{ "@type": "AdministrativeArea", name: "Wayne County, MI" }, { "@type": "AdministrativeArea", name: "Oakland County, MI" }], parentOrganization: { "@type": "Organization", name: "Ragnarok LLC" }, hasOfferCatalog: { "@type": "OfferCatalog", name: "Services", itemListElement: ["Home Inspection", "Small Engine Repair", "Handyman Services"].map(n => ({ "@type": "Offer", itemOffered: { "@type": "Service", name: n } })) } });
 export const areasList = prefix => `<nav aria-label="Areas we serve" class="mx-auto max-w-7xl px-4 mb-6"><p class="font-semibold text-zinc-300 mb-2">Areas we serve</p><ul class="flex flex-wrap gap-x-5 gap-y-1">${cities.map(c => `<li><a href="${prefix}${c.slug}/" class="hover:text-volt">${c.name}, MI</a></li>`).join('')}</ul></nav>`;

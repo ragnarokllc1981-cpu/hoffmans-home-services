@@ -5,7 +5,7 @@ fs.copyFileSync('content/services.json', 'dist/content/services.json');
 fs.writeFileSync('dist/.nojekyll', '');
 console.log('copied content/services.json -> dist/content/');
 
-const { SITE } = JSON.parse(fs.readFileSync('site.config.json', 'utf8'));
+import { SITE } from './site.js';
 const lastmod = new Date().toISOString().slice(0, 10);
 fs.writeFileSync('dist/robots.txt', `User-agent: *\nAllow: /\nSitemap: ${SITE}/sitemap.xml\n`);
 fs.writeFileSync('dist/sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>
