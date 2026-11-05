@@ -14,10 +14,8 @@ const loadHero = () => import('./hero.js').then(({ initHero }) => {
 }).catch(err => console.warn('3D hero unavailable:', err.message));
 if (!matchMedia('(prefers-reduced-motion: reduce)').matches) ('requestIdleCallback' in window ? requestIdleCallback(loadHero, { timeout: 1500 }) : setTimeout(loadHero, 300));
 
-// GSAP: flashing banner + marquee + legend blink
+// GSAP: flashing banner + legend blink
 gsap.to('#flash-banner', { backgroundColor: '#ff6a1a', duration: 0.6, repeat: -1, yoyo: true, ease: 'steps(1)' });
-const marquee = document.getElementById('marquee');
-gsap.to(marquee, { xPercent: -50, duration: 22, ease: 'none', repeat: -1 });
 gsap.to('.legend', { opacity: 0.35, duration: 0.5, repeat: -1, yoyo: true, stagger: 0.25 });
 
 // Motion: hero copy entrance + reveal-on-scroll

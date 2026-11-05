@@ -63,11 +63,6 @@ for (const c of cities) {
         </div>
       </div>
     </section>
-    <div class="relative z-10 bg-ember text-ink overflow-hidden py-3 -rotate-1 scale-105">
-      <div id="marquee" class="flex whitespace-nowrap font-display font-black text-xl uppercase gap-10 will-change-transform">
-        <span>${esc(c.banner)} ★ ${c.county.toUpperCase()} COUNTY ★</span><span aria-hidden="true">${esc(c.banner)} ★ ${c.county.toUpperCase()} COUNTY ★</span><span aria-hidden="true">${esc(c.banner)} ★ ${c.county.toUpperCase()} COUNTY ★</span>
-      </div>
-    </div>
     <article class="mx-auto max-w-3xl px-4 py-12">
 ${body}
       <h2 class="font-display text-2xl sm:text-3xl font-black mt-12">Services for ${c.name} homes</h2>
