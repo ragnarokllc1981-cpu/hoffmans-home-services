@@ -11,7 +11,7 @@ Jason creates and verifies this profile himself at https://business.google.com w
 | Primary | **Home inspector** | Exists in the GBP category list |
 | Secondary | **Small engine repair service** | Exists. Some lists show it as "Small engine repair shop", so pick whichever wording the picker offers. |
 | Secondary | **Handyman/Handywoman/Handyperson** | Exists. GBP uses this exact combined name, not "Handyman". |
-| Do not add | House cleaning service | Leave it out. Cleaning is coordinated through Cozy & Clean, which has its own profile. |
+| Do not add | House cleaning service | Leave it out. Hoffman’s does not offer cleaning. |
 
 Type each one into the category box and only pick an exact match from the dropdown. You can't create custom categories.
 
@@ -24,7 +24,7 @@ Type each one into the category box and only pick an exact match from the dropdo
 ## 4. Description (668 characters, limit 750)
 > Hoffman's Home Services is a Livonia-based ICA certified home inspector serving homeowners across Wayne and Oakland Counties, Michigan. You don't need to be buying or selling. Any homeowner can book an inspection. Each inspection is a visual inspection of the home's readily accessible systems and components, including roof, structure, electrical, plumbing, heating and cooling, and the basement, and comes with a clear, photo-rich report. We also offer small engine repair for mowers, snow blowers, trimmers, and other outdoor power equipment, plus light handyman work for small repairs around the house. Call 313-643-0815 or book online at hoffmanshomeservices.com.
 
-(No links or promotional claims. Cozy & Clean isn't mentioned.)
+(No links or promotional claims. Do not mention cleaning.)
 
 ## 5. Contact and hours
 - Phone: **313-643-0815** (see the warning in section 9)

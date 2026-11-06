@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-21",
+  "updated": "2026-11-06",
   "services": [
     {
       "id": "inspection",
@@ -23,14 +23,6 @@
       "tag": "Punch lists done right",
       "icon": "🛠️",
       "blurb": "Fixtures, doors, drywall patches, caulk, minor carpentry, and inspection-report fix-ups."
-    },
-    {
-      "id": "cleaning",
-      "title": "Cleaning Coordination",
-      "tag": "with Cozy & Clean",
-      "icon": "✨",
-      "blurb": "Move-in, move-out, and recurring cleans coordinated with our partner Cozy & Clean Home Services.",
-      "link": "https://cozyandcleanhome.com"
     }
   ]
 }

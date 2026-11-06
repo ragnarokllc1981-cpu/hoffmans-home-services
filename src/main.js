@@ -35,7 +35,7 @@ function renderServices(services) {
       <p class="text-xs font-mono text-ember mt-1">${esc(s.tag)}</p>
       <p class="mt-3 text-sm text-zinc-400">${esc(s.blurb)}</p>
       ${s.scope ? `<p class="mt-3 text-xs text-zinc-300 border-l-2 border-volt pl-2">${esc(s.scope)}</p>` : ''}
-      ${s.link ? `<a href="${esc(s.link)}" target="_blank" rel="noopener" class="mt-4 inline-block text-sm text-volt hover:underline">Visit Cozy &amp; Clean ↗</a>` : ''}
+      ${s.link ? `<a href="${esc(s.link)}" target="_blank" rel="noopener" class="mt-4 inline-block text-sm text-volt hover:underline">Learn more ↗</a>` : ''}
       <div class="pointer-events-none absolute -bottom-20 -right-20 w-40 h-40 rounded-full bg-volt/0 blur-3xl transition group-hover:bg-volt/30"></div>
     </article>`).join('');
   document.getElementById('service-select').innerHTML = '<option value="">Select…</option>' + services.map(s => `<option value="${esc(s.id)}">${esc(s.title)}</option>`).join('');
