@@ -22,12 +22,12 @@ Type each one into the category box and only pick an exact match from the dropdo
 - To edit later, go to Edit profile → Location → Service area. Changes can take up to 48 hours to show.
 
 ## 4. Description (668 characters, limit 750)
-> Hoffman's Home Services is a Livonia-based ICA certified home inspector serving homeowners across Wayne and Oakland Counties, Michigan. You don't need to be buying or selling. Any homeowner can book an inspection. Each inspection is a visual inspection of the home's readily accessible systems and components, including roof, structure, electrical, plumbing, heating and cooling, and the basement, and comes with a clear, photo-rich report. We also offer small engine repair for mowers, snow blowers, trimmers, and other outdoor power equipment, plus light handyman work for small repairs around the house. Call 313-643-0815 or book online at hoffmanshomeservices.com.
+> Hoffman's Home Services is a Livonia-based ICA certified home inspector serving homeowners across Wayne and Oakland Counties, Michigan. You don't need to be buying or selling. Any homeowner can book an inspection. Each inspection is a visual inspection of the home's readily accessible systems and components, including roof, structure, electrical, plumbing, heating and cooling, and the basement, and comes with a clear, photo-rich report. We also offer small engine repair for mowers, snow blowers, trimmers, and other outdoor power equipment, plus light handyman work for small repairs around the house. Call 313-489-1202 or book online at hoffmanshomeservices.com.
 
 (No links or promotional claims. Do not mention cleaning.)
 
 ## 5. Contact and hours
-- Phone: **313-643-0815** (see the warning in section 9)
+- Phone: **313-489-1202** (Google Voice, Hoffman's only)
 - Website: **https://hoffmanshomeservices.com**
 - Hours: **TBD by Jason**. For a service-area business, these are the hours you take calls or work.
 - Booking / appointment link (optional): https://hoffmanshomeservices.com/#book
@@ -68,8 +68,8 @@ New profiles have to be verified. Google offers whichever methods it decides fit
 
 Have ready: the DBA filing for Ragnarok LLC dba Hoffman's Home Services, the ICA certificate, proof of insurance, a business card or invoice with the name on it, and a phone with the Google Maps app signed in to ragnarokllc1981@gmail.com.
 
-## 9. ⚠️ Warning: shared phone number
-313-643-0815 is already the phone number on the **Cozy & Clean Home Services** Business Profile. If two profiles share one number, Google can treat them as duplicates. It may merge them, suspend one or both, or refuse verification. It's safer to get a **separate number for Hoffman's** (a free Google Voice number with a 313 or 734 area code works) and use it consistently on the profile, the website, and directory listings. If Jason keeps 313-643-0815 anyway, Google may question the profile during verification.
+## 9. Phone number
+Hoffman's uses its own Google Voice number, **313-489-1202** (set up 2026-11-08), on the profile, the website, and directory listings. Don't use Cozy & Clean's number here: two Business Profiles sharing a number can be treated as duplicates.
 
 ## Sources
 - Verify with a video recording: https://support.google.com/business/answer/14271705

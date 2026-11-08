@@ -97,6 +97,6 @@ form.addEventListener('submit', async e => {
     status.textContent = "Got it! We'll reach out within one business day.";
   } catch (err) {
     status.className = 'sm:col-span-2 text-sm text-ember';
-    status.textContent = `${err.message}. You can also call 313-643-0815 or email ragnarokllc1981@gmail.com.`;
+    status.textContent = `${err.message}. You can also call 313-489-1202 or email ragnarokllc1981@gmail.com.`;
   }
 });

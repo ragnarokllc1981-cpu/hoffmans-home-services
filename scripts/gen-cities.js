@@ -3,9 +3,9 @@ import fs from 'node:fs';
 import { cities, INSPECTION_SCOPE } from '../content/cities.js';
 import { SITE } from './site.js';
 const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
-const ld = url => JSON.stringify({ "@context": "https://schema.org", "@type": ["HomeAndConstructionBusiness", "LocalBusiness"], name: "Hoffman's Home Services", url, telephone: "+1-313-643-0815", email: "ragnarokllc1981@gmail.com", address: { "@type": "PostalAddress", addressLocality: "Livonia", addressRegion: "MI", addressCountry: "US" }, areaServed: [{ "@type": "AdministrativeArea", name: "Wayne County, MI" }, { "@type": "AdministrativeArea", name: "Oakland County, MI" }], parentOrganization: { "@type": "Organization", name: "Ragnarok LLC" }, hasOfferCatalog: { "@type": "OfferCatalog", name: "Services", itemListElement: ["Home Inspection", "Small Engine Repair", "Handyman Services"].map(n => ({ "@type": "Offer", itemOffered: { "@type": "Service", name: n } })) } });
+const ld = url => JSON.stringify({ "@context": "https://schema.org", "@type": ["HomeAndConstructionBusiness", "LocalBusiness"], name: "Hoffman's Home Services", url, telephone: "+1-313-489-1202", email: "ragnarokllc1981@gmail.com", address: { "@type": "PostalAddress", addressLocality: "Livonia", addressRegion: "MI", addressCountry: "US" }, areaServed: [{ "@type": "AdministrativeArea", name: "Wayne County, MI" }, { "@type": "AdministrativeArea", name: "Oakland County, MI" }], parentOrganization: { "@type": "Organization", name: "Ragnarok LLC" }, hasOfferCatalog: { "@type": "OfferCatalog", name: "Services", itemListElement: ["Home Inspection", "Small Engine Repair", "Handyman Services"].map(n => ({ "@type": "Offer", itemOffered: { "@type": "Service", name: n } })) } });
 export const areasList = prefix => `<nav aria-label="Areas we serve" class="mx-auto max-w-7xl px-4 mb-6"><p class="font-semibold text-zinc-300 mb-2">Areas we serve</p><ul class="flex flex-wrap gap-x-5 gap-y-1">${cities.map(c => `<li><a href="${prefix}${c.slug}/" class="hover:text-volt">${c.name}, MI</a></li>`).join('')}</ul></nav>`;
-export const NAP = `<address class="not-italic" id="nap"><strong class="text-zinc-300">Hoffman's Home Services</strong>, Livonia, MI · <a href="tel:+13136430815" class="hover:text-volt">(313) 643-0815</a> · <a href="mailto:ragnarokllc1981@gmail.com" class="hover:text-volt">ragnarokllc1981@gmail.com</a></address>`;
+export const NAP = `<address class="not-italic" id="nap"><strong class="text-zinc-300">Hoffman's Home Services</strong>, Livonia, MI · <a href="tel:+13134891202" class="hover:text-volt">(313) 489-1202</a> · <a href="mailto:ragnarokllc1981@gmail.com" class="hover:text-volt">ragnarokllc1981@gmail.com</a></address>`;
 const words = s => s.replace(/<[^>]+>/g, ' ').split(/\s+/).filter(w => /[A-Za-z0-9]/.test(w)).length;
 const report = [];
 for (const c of cities) {
@@ -39,7 +39,7 @@ for (const c of cities) {
 </head>
 <body class="bg-ink text-zinc-100 antialiased">
   <div id="flash-banner" class="fixed top-0 inset-x-0 z-50 bg-volt text-ink text-xs sm:text-sm font-bold tracking-wide text-center py-1.5">
-    ⚡ NOW BOOKING ${c.name.toUpperCase()} INSPECTIONS · CALL <a href="tel:+13136430815" class="underline">313-643-0815</a>
+    ⚡ NOW BOOKING ${c.name.toUpperCase()} INSPECTIONS · CALL <a href="tel:+13134891202" class="underline">313-489-1202</a>
   </div>
   <header class="fixed top-8 inset-x-0 z-40 bg-ink/80 backdrop-blur">
     <nav class="mx-auto max-w-7xl px-4 py-2 flex items-center justify-between">
@@ -59,7 +59,7 @@ for (const c of cities) {
         <p class="city-in mt-5 text-lg text-zinc-300 max-w-2xl">ICA certified home inspections, light handyman work, and small engine repair for ${c.name} homeowners, from our base in Livonia.</p>
         <div class="city-in mt-8 flex flex-wrap gap-3">
           <a href="../#book" class="rounded-xl bg-volt text-ink font-black px-6 py-3.5 shadow-[0_0_40px_-5px] shadow-volt/60 hover:scale-105 transition">Book an Inspection →</a>
-          <a href="tel:+13136430815" class="rounded-xl border border-zinc-600 px-6 py-3.5 font-semibold hover:border-volt hover:text-volt transition">Call 313-643-0815</a>
+          <a href="tel:+13134891202" class="rounded-xl border border-zinc-600 px-6 py-3.5 font-semibold hover:border-volt hover:text-volt transition">Call 313-489-1202</a>
         </div>
       </div>
     </section>
@@ -73,7 +73,7 @@ ${body}
       </ul>
       <div class="mt-12 rounded-2xl border border-volt/40 bg-volt/5 p-6 sm:p-8">
         <p class="font-display text-2xl font-black">Ready to schedule in ${c.name}?</p>
-        <p class="mt-2 text-zinc-300">We serve Wayne and Oakland Counties only. <a href="../#book" class="text-volt underline">Request a booking online</a> or call <a href="tel:+13136430815" class="text-volt underline">313-643-0815</a>.</p>
+        <p class="mt-2 text-zinc-300">We serve Wayne and Oakland Counties only. <a href="../#book" class="text-volt underline">Request a booking online</a> or call <a href="tel:+13134891202" class="text-volt underline">313-489-1202</a>.</p>
       </div>
       <p class="mt-8 text-sm text-zinc-500">Also serving: ${cities.filter(o => o.slug !== c.slug).map(o => `<a href="../${o.slug}/" class="hover:text-volt underline">${o.name}</a>`).join(' · ')}</p>
     </article>

@@ -6,7 +6,7 @@ export const cities = [
 {
   slug: 'livonia', scopeAfter: 2, name: 'Livonia', county: 'Wayne',
   title: "Livonia, MI Home Inspector | Hoffman's Home Services",
-  description: "ICA certified home inspections in Livonia, MI for 1950s-70s ranches, colonials, and split-levels. Basement, sump, and electrical checks. 313-643-0815.",
+  description: "ICA certified home inspections in Livonia, MI for 1950s-70s ranches, colonials, and split-levels. Basement, sump, and electrical checks. 313-489-1202.",
   h1: 'Home Inspections in Livonia, MI: Our Home Base',
   banner: 'LIVONIA · HOME BASE · RANCHES · COLONIALS · SPLIT-LEVELS',
   sections: [
@@ -19,7 +19,7 @@ export const cities = [
 {
   slug: 'westland', scopeAfter: 1, name: 'Westland', county: 'Wayne',
   title: "Westland, MI Home Inspections | Hoffman's Home Services",
-  description: "Home inspections in Westland, MI for postwar ranches and bungalows. We check foundations, sump pumps, panels, and old plumbing. Call 313-643-0815.",
+  description: "Home inspections in Westland, MI for postwar ranches and bungalows. We check foundations, sump pumps, panels, and old plumbing. Call 313-489-1202.",
   h1: 'Westland Home Inspections for Postwar Neighborhoods',
   banner: 'WESTLAND · FORMERLY NANKIN TOWNSHIP · POSTWAR RANCHES',
   sections: [
@@ -32,7 +32,7 @@ export const cities = [
 {
   slug: 'canton', scopeAfter: 1, name: 'Canton', county: 'Wayne',
   title: "Canton, MI Home Inspector | Hoffman's Home Services",
-  description: "Canton Township home inspections for 1970s-2000s subdivision homes. We check roofs, furnaces, sump pumps, and basements. ICA certified. 313-643-0815.",
+  description: "Canton Township home inspections for 1970s-2000s subdivision homes. We check roofs, furnaces, sump pumps, and basements. ICA certified. 313-489-1202.",
   h1: 'Home Inspections in Canton Township Subdivisions',
   banner: 'CANTON TOWNSHIP · SUBDIVISION HOMES · 1970s TO TODAY',
   sections: [
@@ -45,7 +45,7 @@ export const cities = [
 {
   slug: 'plymouth', scopeAfter: 1, name: 'Plymouth', county: 'Wayne',
   title: "Plymouth, MI Home Inspections | Hoffman's Home Services",
-  description: "Plymouth, MI home inspections for historic homes near downtown and postwar houses. Older wiring, foundations, and basements done right. 313-643-0815.",
+  description: "Plymouth, MI home inspections for historic homes near downtown and postwar houses. Older wiring, foundations, and basements done right. 313-489-1202.",
   h1: 'Plymouth, MI Home Inspections, From Historic Homes to Postwar Builds',
   banner: 'PLYMOUTH · HISTORIC HOMES · KELLOGG PARK · OLD VILLAGE',
   sections: [
@@ -58,7 +58,7 @@ export const cities = [
 {
   slug: 'farmington-hills', scopeAfter: 2, name: 'Farmington Hills', county: 'Oakland',
   title: "Farmington Hills Home Inspector | Hoffman's Home Services",
-  description: "Farmington Hills, MI home inspections for 1960s-80s colonials, ranches, and tri-levels. Roofs, basements, panels, and HVAC reviewed. 313-643-0815.",
+  description: "Farmington Hills, MI home inspections for 1960s-80s colonials, ranches, and tri-levels. Roofs, basements, panels, and HVAC reviewed. 313-489-1202.",
   h1: 'Farmington Hills Home Inspections for Mid-Century and 1980s Homes',
   banner: 'FARMINGTON HILLS · OAKLAND COUNTY · COLONIALS · TRI-LEVELS',
   sections: [
@@ -72,7 +72,7 @@ export const cities = [
 {
   slug: 'novi', scopeAfter: 1, name: 'Novi', county: 'Oakland',
   title: "Novi, MI Home Inspections | Hoffman's Home Services",
-  description: "Novi, MI home inspections for 1990s-2000s colonials, new builds, and condos. We check walkout basements, roofs, HVAC, and grading. 313-643-0815.",
+  description: "Novi, MI home inspections for 1990s-2000s colonials, new builds, and condos. We check walkout basements, roofs, HVAC, and grading. 313-489-1202.",
   h1: 'Novi Home Inspections for Newer Homes, Condos, and New Construction',
   banner: 'NOVI · OAKLAND COUNTY · WALKOUTS · NEW CONSTRUCTION · CONDOS',
   sections: [
@@ -86,7 +86,7 @@ export const cities = [
 {
   slug: 'redford', scopeAfter: 1, name: 'Redford', county: 'Wayne',
   title: "Redford, MI Home Inspector | Hoffman's Home Services",
-  description: "Redford Township home inspections for 1950s brick homes and older bungalows. Basements, sewer lines, electrical, and plumbing checked. 313-643-0815.",
+  description: "Redford Township home inspections for 1950s brick homes and older bungalows. Basements, sewer lines, electrical, and plumbing checked. 313-489-1202.",
   h1: 'Redford Township Home Inspections for 1950s Homes and Older Bungalows',
   banner: 'REDFORD TOWNSHIP · 1950s BRICK HOMES · CENTURY BUNGALOWS',
   sections: [
@@ -100,14 +100,14 @@ export const cities = [
 {
   slug: 'dearborn', scopeAfter: 1, name: 'Dearborn', county: 'Wayne',
   title: "Dearborn, MI Home Inspections | Hoffman's Home Services",
-  description: "Dearborn home inspections for 1920s Ford-era homes, bungalows, and postwar brick houses. Basement flooding and old wiring checks. 313-643-0815.",
+  description: "Dearborn home inspections for 1920s Ford-era homes, bungalows, and postwar brick houses. Basement flooding and old wiring checks. 313-489-1202.",
   h1: 'Dearborn Home Inspections, From Ford Homes to Postwar Brick',
   banner: 'DEARBORN · FORD HOMES DISTRICT · BUNGALOWS · BRICK COLONIALS',
   sections: [
     ['Some of the oldest suburban housing in our area', `Dearborn's housing reaches back further than most of western Wayne County. Its best-known example is the Ford Homes Historic District, about 250 two-story houses built from 1919 to 1921 for workers at Henry Ford & Son's tractor plant. They were built with assembly-line methods: specialized crews dug the full basements, laid the walls, framed, and finished, one house after another. Beyond that district, Dearborn has many 1920s through 1950s bungalows, Tudors, colonials, and brick postwar homes.`],
     ['What a 70- to 100-year-old house can hide', `Homes from the 1920s and 1930s may still have knob-and-tube wiring somewhere in the walls or attic, even after an updated panel was installed. We look for it, along with ungrounded circuits, overfused breakers, and DIY junctions. Plumbing may include galvanized supply lines, lead service lines on some older properties, and cast-iron or clay drains. Chimneys, plaster walls and ceilings, and decades of renovations get a close look, and we flag materials that may contain asbestos or lead paint for proper testing.`],
     ['Basements and flood history', `In late June 2021, a historic storm dropped more than six inches of rain on parts of the region in about a day, far beyond what the sewer system was designed to handle, and caused widespread basement backups in Dearborn. Because of that history, we look closely at basement walls and floors for signs of past water, ask about backwater valves and standpipes, check sump pumps where present, and note any finished basements that could be hiding damage. We'll also suggest asking the seller directly about flood history and insurance claims.`],
-    ['Respecting older homes', `Old houses aren't problems to be fixed. They need informed owners. Our goal is a clear, fair report that separates real defects from normal age. After the inspection, our handyman service and small engine repair are just a call away at 313-643-0815.`],
+    ['Respecting older homes', `Old houses aren't problems to be fixed. They need informed owners. Our goal is a clear, fair report that separates real defects from normal age. After the inspection, our handyman service and small engine repair are just a call away at 313-489-1202.`],
   ],
 },
 ];
