@@ -30,7 +30,7 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
   let b = req.body || {};
   if (typeof b === 'string') { try { b = JSON.parse(b); } catch { b = {}; } }
-  if (b.website) return res.json({ ok: true }); // honeypot
+  if (b.website || b._hp_fax_x) return res.json({ ok: true }); // honeypot (the form's field is _hp_fax_x)
   const lead = {
     name: clip(b.name, 120), phone: clip(b.phone, 40), email: clip(b.email, 200),
     service: clip(b.service, 40), county: clip(b.county, 20),
@@ -44,6 +44,10 @@ export default async function handler(req, res) {
   if (!COUNTIES.includes(lead.county)) errors.push('county (Wayne or Oakland only)');
   if (errors.length) return res.status(400).json({ error: `Invalid: ${errors.join(', ')}` });
 
+  const env = process.env;
+  if (!env.GOOGLE_OAUTH_CLIENT_ID || !env.GOOGLE_OAUTH_CLIENT_SECRET || !env.GOOGLE_OAUTH_REFRESH_TOKEN) {
+    return res.status(503).json({ error: 'Email not configured' }); // the page falls back to FormSubmit
+  }
   const service = SERVICES[lead.service];
   const text = [
     `Name: ${lead.name}`, `Phone: ${lead.phone}`, `Email: ${lead.email}`, `Service: ${service}`, `Service ID: ${lead.service}`,

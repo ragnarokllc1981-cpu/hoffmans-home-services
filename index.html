@@ -19,7 +19,7 @@
   <meta name="twitter:title" content="Home Inspections in Livonia, MI | Hoffman&#39;s Home Services" />
   <meta name="twitter:description" content="Certified home inspections plus handyman and small engine repair for Wayne &amp; Oakland County, MI. Call 313-489-1202." />
   <meta name="twitter:image" content="%SITE%/og-image.jpg" />
-  <!-- Google Search Console: uncomment and paste token after verifying the property -->
+  <!-- Google Search Console verification -->
   <meta name="google-site-verification" content="Zl846lV_Prgf30C9fOtZ-_Rj2r8T0H9wZNb8aRKBlSg" />
   <link rel="preload" as="image" href="/hero-fallback.webp" fetchpriority="high" />
   <script type="application/ld+json">{"@context":"https://schema.org","@type":["HomeAndConstructionBusiness","LocalBusiness"],"name":"Hoffman's Home Services","url":"%SITE%/","telephone":"+1-313-489-1202","email":"ragnarokllc1981@gmail.com","address":{"@type":"PostalAddress","addressLocality":"Livonia","addressRegion":"MI","addressCountry":"US"},"areaServed":[{"@type":"AdministrativeArea","name":"Wayne County, MI"},{"@type":"AdministrativeArea","name":"Oakland County, MI"}],"parentOrganization":{"@type":"Organization","name":"Ragnarok LLC"},"hasOfferCatalog":{"@type":"OfferCatalog","name":"Services","itemListElement":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"Home Inspection"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Small Engine Repair"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Handyman Services"}}]}}</script>
@@ -32,8 +32,8 @@
     ⚡ NOW BOOKING INSPECTIONS · WAYNE & OAKLAND COUNTIES · CALL <a href="tel:+13134891202" class="underline">313-489-1202</a>
   </div>
 
-  <header class="fixed top-8 inset-x-0 z-40">
-    <nav class="mx-auto max-w-7xl px-4 flex items-center justify-between">
+  <header class="fixed top-8 inset-x-0 z-40 bg-ink/80 backdrop-blur">
+    <nav class="mx-auto max-w-7xl px-4 py-2 flex items-center justify-between">
       <a href="#top" class="font-display text-lg sm:text-xl font-black tracking-tight">HOFFMAN'S<span class="text-volt">.</span> <span class="hidden sm:inline font-light text-zinc-400">HOME SERVICES</span></a>
       <div class="flex items-center gap-2 sm:gap-5 text-sm">
         <a href="#services" class="hidden md:inline hover:text-volt">Services</a>
@@ -45,11 +45,11 @@
 
   <main id="top">
     <!-- HERO -->
-    <section id="hero" class="relative h-[200vh]">
+    <section id="hero" class="relative h-[200vh]" aria-label="How a home inspection looks at your house">
       <div class="sticky top-0 h-screen w-full overflow-hidden">
         <img id="hero-fallback" src="/hero-fallback.webp" width="1440" height="900" fetchpriority="high" alt="3D cutaway of a Michigan house with the walls peeled back to reveal wood framing, glowing electrical wiring, and HVAC ductwork" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-700" />
         <canvas id="hero-canvas" class="absolute inset-0 w-full h-full opacity-0 transition-opacity duration-700" aria-hidden="true"></canvas>
-        <div class="absolute inset-0 pointer-events-none bg-gradient-to-r from-ink via-ink/60 to-transparent"></div>
+        <div id="hero-shade" class="absolute inset-0 pointer-events-none bg-gradient-to-r from-ink via-ink/60 to-transparent"></div>
         <div class="relative z-10 h-full mx-auto max-w-7xl px-4 flex items-center">
           <div class="max-w-xl pointer-events-auto" id="hero-copy">
             <p class="hero-in inline-flex items-center gap-2 rounded-full border border-volt/40 bg-volt/10 px-3 py-1 text-xs font-semibold text-volt">ICA-CERTIFIED HOME INSPECTOR · LIVONIA, MI</p>
@@ -59,14 +59,32 @@
               <a href="#book" class="rounded-xl bg-volt text-ink font-black px-6 py-3.5 shadow-[0_0_40px_-5px] shadow-volt/60 hover:scale-105 transition">Book an Inspection →</a>
               <a href="tel:+13134891202" class="rounded-xl border border-zinc-600 px-6 py-3.5 font-semibold hover:border-volt hover:text-volt transition">313-489-1202</a>
             </div>
-            <p class="hero-in mt-6 text-xs text-zinc-500">Scroll to peel back the house ↓</p>
+            <p class="hero-in mt-6 text-xs text-zinc-500">Scroll to peel back the house, or pick a system below ↓</p>
           </div>
         </div>
-        <div id="layer-legend" class="absolute bottom-6 right-6 z-10 hidden sm:flex gap-3 text-xs font-mono">
-          <span class="legend px-2 py-1 rounded bg-black/60 border border-zinc-700"><i class="inline-block w-2 h-2 rounded-full bg-[#d9a066] mr-1"></i>FRAMING</span>
-          <span class="legend px-2 py-1 rounded bg-black/60 border border-zinc-700"><i class="inline-block w-2 h-2 rounded-full bg-volt mr-1"></i>WIRING</span>
-          <span class="legend px-2 py-1 rounded bg-black/60 border border-zinc-700"><i class="inline-block w-2 h-2 rounded-full bg-sky-400 mr-1"></i>DUCTWORK</span>
+        <!-- System labels: hero.js shows the selected one over its 3D anchor -->
+        <div id="hero-labels" class="absolute inset-0 z-10 pointer-events-none" aria-hidden="true">
+          <div class="sys-label" data-label="roof"><i data-lucide="house"></i><span><strong>Roof</strong><small>Shingles, flashing, gutters, vents</small></span></div>
+          <div class="sys-label" data-label="insulation"><i data-lucide="layers"></i><span><strong>Attic &amp; insulation</strong><small>Insulation depth, ventilation, moisture</small></span></div>
+          <div class="sys-label" data-label="structure"><i data-lucide="hammer"></i><span><strong>Structure</strong><small>Framing, walls, visible structure</small></span></div>
+          <div class="sys-label" data-label="exterior"><i data-lucide="app-window"></i><span><strong>Exterior</strong><small>Siding, windows, doors, trim</small></span></div>
+          <div class="sys-label" data-label="electrical"><i data-lucide="zap"></i><span><strong>Electrical</strong><small>Panel, wiring, GFCI, grounding</small></span></div>
+          <div class="sys-label" data-label="plumbing"><i data-lucide="droplets"></i><span><strong>Plumbing</strong><small>Supply, drains, water heater</small></span></div>
+          <div class="sys-label" data-label="hvac"><i data-lucide="fan"></i><span><strong>Heating &amp; cooling</strong><small>Furnace, A/C, ductwork</small></span></div>
+          <div class="sys-label" data-label="foundation"><i data-lucide="brick-wall"></i><span><strong>Foundation</strong><small>Basement, slab, sump, grading</small></span></div>
         </div>
+        <nav id="layer-legend" class="absolute bottom-4 inset-x-0 z-20 px-4" aria-label="Home systems we inspect">
+          <ul class="mx-auto max-w-7xl flex gap-2 overflow-x-auto pb-1 sm:flex-wrap sm:justify-end sm:overflow-visible">
+            <li><button type="button" class="sys-chip" data-sys="roof" aria-pressed="false"><i data-lucide="house"></i>Roof</button></li>
+            <li><button type="button" class="sys-chip" data-sys="insulation" aria-pressed="false"><i data-lucide="layers"></i>Attic &amp; insulation</button></li>
+            <li><button type="button" class="sys-chip" data-sys="structure" aria-pressed="false"><i data-lucide="hammer"></i>Structure</button></li>
+            <li><button type="button" class="sys-chip" data-sys="exterior" aria-pressed="false"><i data-lucide="app-window"></i>Exterior</button></li>
+            <li><button type="button" class="sys-chip" data-sys="electrical" aria-pressed="false"><i data-lucide="zap"></i>Electrical</button></li>
+            <li><button type="button" class="sys-chip" data-sys="plumbing" aria-pressed="false"><i data-lucide="droplets"></i>Plumbing</button></li>
+            <li><button type="button" class="sys-chip" data-sys="hvac" aria-pressed="false"><i data-lucide="fan"></i>Heating &amp; cooling</button></li>
+            <li><button type="button" class="sys-chip" data-sys="foundation" aria-pressed="false"><i data-lucide="brick-wall"></i>Foundation</button></li>
+          </ul>
+        </nav>
       </div>
     </section>
 
@@ -78,11 +96,11 @@
           <div><h3 class="font-bold">ICA Certified</h3><p class="text-sm text-zinc-400">Certified home inspector, trained to industry standards of practice.</p></div>
         </div>
         <div class="trust-card rounded-2xl border border-zinc-800 bg-zinc-900/60 p-6 flex items-center gap-4">
-          <div class="shrink-0 w-16 h-16 rounded-full grid place-items-center bg-zinc-800 text-3xl ring-4 ring-zinc-700/40">🛡️</div>
+          <div class="shrink-0 w-16 h-16 rounded-full grid place-items-center bg-zinc-800 text-volt ring-4 ring-zinc-700/40"><i data-lucide="shield-check" class="w-8 h-8"></i></div>
           <div><h3 class="font-bold">Fully Insured</h3><p class="text-sm text-zinc-400">Work performed under Ragnarok LLC with liability coverage.</p></div>
         </div>
         <div class="trust-card rounded-2xl border border-zinc-800 bg-zinc-900/60 p-6 flex items-center gap-4">
-          <div class="shrink-0 w-16 h-16 rounded-full grid place-items-center bg-zinc-800 text-3xl ring-4 ring-zinc-700/40">✔️</div>
+          <div class="shrink-0 w-16 h-16 rounded-full grid place-items-center bg-zinc-800 text-volt ring-4 ring-zinc-700/40"><i data-lucide="user-check" class="w-8 h-8"></i></div>
           <div><h3 class="font-bold">Background-Checked</h3><p class="text-sm text-zinc-400">The person at your door is vetted. Every time.</p></div>
         </div>
       </div>
@@ -103,9 +121,11 @@
           <p class="text-volt font-mono text-sm">// SERVICE AREA</p>
           <h2 class="font-display text-4xl sm:text-5xl font-black mt-2">Wayne &amp; Oakland Counties only.</h2>
           <p class="mt-4 text-zinc-400">Based in Livonia, we keep a tight service radius so we show up on time. If you're in Wayne or Oakland County, Michigan, we've got you covered.</p>
-          <ul class="mt-6 grid grid-cols-2 gap-2 text-sm text-zinc-300">
-            <li>📍 Livonia</li><li>📍 Northville · Novi</li><li>📍 Plymouth · Canton</li><li>📍 Westland · Garden City</li>
-            <li>📍 Dearborn · Redford</li><li>📍 Farmington Hills</li><li>📍 Southfield · Troy</li><li>📍 Royal Oak · Birmingham</li>
+          <ul class="area-list mt-6 grid grid-cols-2 gap-2 text-sm text-zinc-300">
+            <li><i data-lucide="map-pin"></i><a href="./livonia/" class="hover:text-volt">Livonia</a></li><li><i data-lucide="map-pin"></i>Northville · <a href="./novi/" class="hover:text-volt">Novi</a></li>
+            <li><i data-lucide="map-pin"></i><a href="./plymouth/" class="hover:text-volt">Plymouth</a> · <a href="./canton/" class="hover:text-volt">Canton</a></li><li><i data-lucide="map-pin"></i><a href="./westland/" class="hover:text-volt">Westland</a> · Garden City</li>
+            <li><i data-lucide="map-pin"></i><a href="./dearborn/" class="hover:text-volt">Dearborn</a> · <a href="./redford/" class="hover:text-volt">Redford</a></li><li><i data-lucide="map-pin"></i><a href="./farmington-hills/" class="hover:text-volt">Farmington Hills</a></li>
+            <li><i data-lucide="map-pin"></i>Southfield · Troy</li><li><i data-lucide="map-pin"></i>Royal Oak · Birmingham</li>
           </ul>
         </div>
         <div class="grid grid-cols-2 gap-4">

@@ -21,7 +21,7 @@ const clip = (v, n) => String(v ?? '').trim().slice(0, n);
 
 app.post('/api/leads', async (req, res) => {
   const b = req.body || {};
-  if (b.website) return res.json({ ok: true }); // honeypot
+  if (b.website || b._hp_fax_x) return res.json({ ok: true }); // honeypot (the form's field is _hp_fax_x)
   const lead = {
     name: clip(b.name, 120), phone: clip(b.phone, 40), email: clip(b.email, 200),
     service: clip(b.service, 40), county: clip(b.county, 20),

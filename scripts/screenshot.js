@@ -10,6 +10,7 @@ const errors = [];
 page.on('console', m => { if (['error', 'warning'].includes(m.type())) errors.push(`${m.type()}: ${m.text()}`); });
 page.on('pageerror', e => errors.push('pageerror: ' + e.message));
 await page.setViewport({ width: 1440, height: 900 });
+// ?peel= is hero scroll progress: 0 closed, 1 walls folded down and roof lifted.
 for (const [name, peel] of [['hero-closed', 0], ['hero-peeled', 1]]) {
   await page.goto(`${url}?peel=${peel}`, { waitUntil: 'networkidle0' });
   await new Promise(r => setTimeout(r, 2500));
@@ -23,6 +24,8 @@ await page.screenshot({ path: 'screenshots/full-page.png', fullPage: true });
 await page.setViewport({ width: 390, height: 844, isMobile: true });
 await page.goto(url, { waitUntil: 'networkidle0' }); await new Promise(r => setTimeout(r, 2000));
 await page.screenshot({ path: 'screenshots/mobile-hero.png' });
+await page.goto(`${url}?peel=1`, { waitUntil: 'networkidle0' }); await new Promise(r => setTimeout(r, 2500));
+await page.screenshot({ path: 'screenshots/mobile-hero-exploded.png' });
 console.log('GL renderer:', gl);
 console.log(errors.length ? errors.join('\n') : 'No console errors/warnings');
 await browser.close();
