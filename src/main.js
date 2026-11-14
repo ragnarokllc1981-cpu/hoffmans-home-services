@@ -22,13 +22,12 @@ inView('#area', () => { animate('.county', { opacity: [0, 1], scale: [0.85, 1] }
 
 // Services: live content from /api/content, bundled fallback
 // Lucide icon per service id; unknown ids fall back to the emoji in services.json.
-const SERVICE_ICONS = { inspection: 'search-check', 'small-engine': 'cog', handyman: 'wrench' };
+const SERVICE_ICONS = { inspection: 'search-check' };
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 function renderServices(services) {
   const grid = document.getElementById('service-grid');
   grid.innerHTML = services.map(s => `
     <article class="service-card group relative rounded-2xl border ${s.featured ? 'border-volt/60 bg-gradient-to-b from-volt/10' : 'border-zinc-800 bg-gradient-to-b from-zinc-900'} to-zinc-950 p-6 overflow-hidden transition-colors hover:border-volt">
-      ${s.featured ? '<span class="absolute top-4 right-4 text-[10px] font-black bg-volt text-ink px-2 py-0.5 rounded-full">ANCHOR</span>' : ''}
       <div class="text-4xl text-volt transition-transform duration-300 group-hover:scale-125 group-hover:-rotate-6">${SERVICE_ICONS[s.id] ? `<i data-lucide="${SERVICE_ICONS[s.id]}" class="w-10 h-10" stroke-width="1.5"></i>` : esc(s.icon)}</div>
       <h3 class="mt-4 font-display text-xl font-black">${esc(s.title)}</h3>
       <p class="text-xs font-mono text-ember mt-1">${esc(s.tag)}</p>
@@ -38,7 +37,7 @@ function renderServices(services) {
       <div class="pointer-events-none absolute -bottom-20 -right-20 w-40 h-40 rounded-full bg-volt/0 blur-3xl transition group-hover:bg-volt/30"></div>
     </article>`).join('');
   renderIcons(grid);
-  document.getElementById('service-select').innerHTML = '<option value="">Select…</option>' + services.map(s => `<option value="${esc(s.id)}">${esc(s.title)}</option>`).join('');
+  document.getElementById('service-select').innerHTML = (services.length === 1 ? '' : '<option value="">Select…</option>') + services.map(s => `<option value="${esc(s.id)}">${esc(s.title)}</option>`).join('');
   grid.querySelectorAll('.service-card').forEach(card => {
     card.addEventListener('pointermove', e => {
       const r = card.getBoundingClientRect();

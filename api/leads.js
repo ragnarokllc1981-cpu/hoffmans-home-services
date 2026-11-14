@@ -2,7 +2,7 @@
 // (Booking Boss sweeps it) via the Gmail API. Same rules as server/index.js.
 // Env: GOOGLE_OAUTH_CLIENT_ID, GOOGLE_OAUTH_CLIENT_SECRET, GOOGLE_OAUTH_REFRESH_TOKEN (gmail.send scope), LEAD_EMAIL.
 
-const SERVICES = { inspection: 'ICA Certified Home Inspections', 'small-engine': 'Small Engine Repair', handyman: 'Light Handyman' };
+const SERVICES = { inspection: 'ICA Certified Home Inspections' };
 const COUNTIES = ['Wayne', 'Oakland'];
 const clip = (v, n) => String(v ?? '').replace(/[\r\n]+/g, ' ').trim().slice(0, n);
 

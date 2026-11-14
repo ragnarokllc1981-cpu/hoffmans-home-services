@@ -15,7 +15,7 @@ const app = express();
 app.use(express.json({ limit: '20kb', type: ['application/json', 'text/plain'] }));
 const append = (file, obj) => fs.appendFile(path.join(DATA, file), JSON.stringify(obj) + '\n');
 
-const SERVICES = ['inspection', 'small-engine', 'handyman'];
+const SERVICES = ['inspection'];
 const COUNTIES = ['Wayne', 'Oakland'];
 const clip = (v, n) => String(v ?? '').trim().slice(0, n);
 

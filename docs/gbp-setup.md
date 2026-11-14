@@ -9,9 +9,9 @@ Jason creates and verifies this profile himself at https://business.google.com w
 | Role | Category (as it appears in GBP) | Status |
 |---|---|---|
 | Primary | **Home inspector** | Exists in the GBP category list |
-| Secondary | **Small engine repair service** | Exists. Some lists show it as "Small engine repair shop", so pick whichever wording the picker offers. |
-| Secondary | **Handyman/Handywoman/Handyperson** | Exists. GBP uses this exact combined name, not "Handyman". |
 | Do not add | House cleaning service | Leave it out. Hoffman’s does not offer cleaning. |
+| Do not add | Small engine repair service | Leave it out. Hoffman’s no longer offers small engine repair (removed 2026-11-14). If it was already added, remove it under Edit profile → Business category. |
+| Do not add | Handyman/Handywoman/Handyperson | Leave it out. Hoffman’s is inspections only since 2026-11-14. Remove it if it was already added. |
 
 Type each one into the category box and only pick an exact match from the dropdown. You can't create custom categories.
 
@@ -21,8 +21,8 @@ Type each one into the category box and only pick an exact match from the dropdo
 - Service areas: type **Wayne County, MI** and **Oakland County, MI** and select the suggestions. Google allows up to **20** service areas (cities, ZIP codes, or counties, but not a radius). To be more specific, you can also add Livonia, Westland, Canton, Plymouth, Farmington Hills, Novi, Redford, and Dearborn. Keep the whole area within about 2 hours' drive. Do not add Macomb County.
 - To edit later, go to Edit profile → Location → Service area. Changes can take up to 48 hours to show.
 
-## 4. Description (668 characters, limit 750)
-> Hoffman's Home Services is a Livonia-based ICA certified home inspector serving homeowners across Wayne and Oakland Counties, Michigan. You don't need to be buying or selling. Any homeowner can book an inspection. Each inspection is a visual inspection of the home's readily accessible systems and components, including roof, structure, electrical, plumbing, heating and cooling, and the basement, and comes with a clear, photo-rich report. We also offer small engine repair for mowers, snow blowers, trimmers, and other outdoor power equipment, plus light handyman work for small repairs around the house. Call 313-489-1202 or book online at hoffmanshomeservices.com.
+## 4. Description (502 characters, limit 750)
+> Hoffman's Home Services is a Livonia-based ICA certified home inspector serving homeowners across Wayne and Oakland Counties, Michigan. You don't need to be buying or selling. Any homeowner can book an inspection. Each inspection is a visual inspection of the home's readily accessible systems and components, including roof, structure, electrical, plumbing, heating and cooling, and the basement, and comes with a clear, photo-rich report. Call 313-489-1202 or book online at hoffmanshomeservices.com.
 
 (No links or promotional claims. Do not mention cleaning.)
 
@@ -35,9 +35,6 @@ Type each one into the category box and only pick an exact match from the dropdo
 ## 6. Services list (Edit profile → Services)
 - Home inspection: visual inspection of readily accessible systems and components, photo-rich report
 - Homeowner / maintenance inspection
-- Small engine repair: lawn mowers, snow blowers, string trimmers, leaf blowers, chainsaws, generators
-- Small engine tune-up and seasonal service
-- Light handyman repairs (fixtures, doors, drywall patches, minor repairs)
 
 ## 7. Photos checklist
 - [ ] Logo (square, at least 250×250)
@@ -45,8 +42,6 @@ Type each one into the category box and only pick an exact match from the dropdo
 - [ ] Jason at work during an inspection (no customer faces)
 - [ ] Inspection tools: moisture meter, flashlight, ladder, outlet tester, thermal camera if he uses one
 - [ ] Sample report pages (with customer info blurred)
-- [ ] Small engine work: a mower or snow blower on the bench, before and after
-- [ ] Handyman work: a few before-and-after shots
 - [ ] Branded vehicle, magnet sign, or shirt if he has one
 - [ ] ICA certificate (photo or scan)
 Use real photos (no stock or heavy filters), in JPG or PNG, between 10 KB and 5 MB.
@@ -57,7 +52,7 @@ New profiles have to be verified. Google offers whichever methods it decides fit
 **Video recording** (from the Google Maps / Business Profile app on a phone: Get verified → Business video):
 - One continuous, unedited clip of at least 30 seconds, recorded live in the app. Pre-recorded uploads aren't accepted.
 - **Where the business is based:** street signs or landmarks near the Livonia base (his home neighborhood is fine for a service-area business).
-- **That the business exists:** inspection tools and equipment, small engine tools or the workbench, business cards, a branded shirt or vehicle magnet.
+- **That the business exists:** inspection tools and equipment, business cards, a branded shirt or vehicle magnet.
 - **That he manages it:** him doing a service, unlocking a branded vehicle or toolbox, and/or a business document that matches "Hoffman's Home Services" (DBA / assumed name certificate, invoice, business utility bill, insurance certificate).
 - Don't show: bank, tax, or ID numbers, private information, or other people's faces.
 - Review takes up to 5 business days.

@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import { cities, INSPECTION_SCOPE } from '../content/cities.js';
 import { SITE } from './site.js';
 const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
-const ld = url => JSON.stringify({ "@context": "https://schema.org", "@type": ["HomeAndConstructionBusiness", "LocalBusiness"], name: "Hoffman's Home Services", url, telephone: "+1-313-489-1202", email: "ragnarokllc1981@gmail.com", address: { "@type": "PostalAddress", addressLocality: "Livonia", addressRegion: "MI", addressCountry: "US" }, areaServed: [{ "@type": "AdministrativeArea", name: "Wayne County, MI" }, { "@type": "AdministrativeArea", name: "Oakland County, MI" }], parentOrganization: { "@type": "Organization", name: "Ragnarok LLC" }, hasOfferCatalog: { "@type": "OfferCatalog", name: "Services", itemListElement: ["Home Inspection", "Small Engine Repair", "Handyman Services"].map(n => ({ "@type": "Offer", itemOffered: { "@type": "Service", name: n } })) } });
+const ld = url => JSON.stringify({ "@context": "https://schema.org", "@type": ["HomeAndConstructionBusiness", "LocalBusiness"], name: "Hoffman's Home Services", url, telephone: "+1-313-489-1202", email: "ragnarokllc1981@gmail.com", address: { "@type": "PostalAddress", addressLocality: "Livonia", addressRegion: "MI", addressCountry: "US" }, areaServed: [{ "@type": "AdministrativeArea", name: "Wayne County, MI" }, { "@type": "AdministrativeArea", name: "Oakland County, MI" }], parentOrganization: { "@type": "Organization", name: "Ragnarok LLC" }, hasOfferCatalog: { "@type": "OfferCatalog", name: "Services", itemListElement: ["Home Inspection"].map(n => ({ "@type": "Offer", itemOffered: { "@type": "Service", name: n } })) } });
 export const areasList = prefix => `<nav aria-label="Areas we serve" class="mx-auto max-w-7xl px-4 mb-6"><p class="font-semibold text-zinc-300 mb-2">Areas we serve</p><ul class="flex flex-wrap gap-x-5 gap-y-1">${cities.map(c => `<li><a href="${prefix}${c.slug}/" class="hover:text-volt">${c.name}, MI</a></li>`).join('')}</ul></nav>`;
 export const NAP = `<address class="not-italic" id="nap"><strong class="text-zinc-300">Hoffman's Home Services</strong>, Livonia, MI · <a href="tel:+13134891202" class="hover:text-volt">(313) 489-1202</a> · <a href="mailto:ragnarokllc1981@gmail.com" class="hover:text-volt">ragnarokllc1981@gmail.com</a></address>`;
 const words = s => s.replace(/<[^>]+>/g, ' ').split(/\s+/).filter(w => /[A-Za-z0-9]/.test(w)).length;
@@ -56,7 +56,7 @@ for (const c of cities) {
       <div class="mx-auto max-w-5xl px-4 py-16 sm:py-24">
         <p class="city-in inline-flex rounded-full border border-volt/40 bg-volt/10 px-3 py-1 text-xs font-semibold text-volt">ICA CERTIFIED · ${c.county.toUpperCase()} COUNTY, MI</p>
         <h1 class="city-in mt-5 font-display text-4xl sm:text-6xl font-black leading-[1.0] tracking-tight">${esc(c.h1)}</h1>
-        <p class="city-in mt-5 text-lg text-zinc-300 max-w-2xl">ICA certified home inspections, light handyman work, and small engine repair for ${c.name} homeowners, from our base in Livonia.</p>
+        <p class="city-in mt-5 text-lg text-zinc-300 max-w-2xl">ICA certified home inspections for ${c.name} homeowners, from our base in Livonia.</p>
         <div class="city-in mt-8 flex flex-wrap gap-3">
           <a href="../#book" class="rounded-xl bg-volt text-ink font-black px-6 py-3.5 shadow-[0_0_40px_-5px] shadow-volt/60 hover:scale-105 transition">Book an Inspection →</a>
           <a href="tel:+13134891202" class="rounded-xl border border-zinc-600 px-6 py-3.5 font-semibold hover:border-volt hover:text-volt transition">Call 313-489-1202</a>
@@ -65,11 +65,9 @@ for (const c of cities) {
     </section>
     <article class="mx-auto max-w-3xl px-4 py-12">
 ${body}
-      <h2 class="font-display text-2xl sm:text-3xl font-black mt-12">Services for ${c.name} homes</h2>
-      <ul class="mt-4 grid sm:grid-cols-2 gap-3 text-sm">
+      <h2 class="font-display text-2xl sm:text-3xl font-black mt-12">Home inspections for ${c.name} homes</h2>
+      <ul class="mt-4 grid gap-3 text-sm">
         <li><a class="block rounded-xl border border-zinc-800 p-4 hover:border-volt" href="../#services"><strong class="text-volt">ICA certified home inspections</strong><br />For any homeowner. A visual inspection of readily accessible systems and components.</a></li>
-        <li><a class="block rounded-xl border border-zinc-800 p-4 hover:border-volt" href="../#services"><strong class="text-volt">Light handyman</strong><br />Inspection-report fixes and punch lists.</a></li>
-        <li><a class="block rounded-xl border border-zinc-800 p-4 hover:border-volt" href="../#services"><strong class="text-volt">Small engine repair</strong><br />Mowers, snowblowers, generators, and more.</a></li>
       </ul>
       <div class="mt-12 rounded-2xl border border-volt/40 bg-volt/5 p-6 sm:p-8">
         <p class="font-display text-2xl font-black">Ready to schedule in ${c.name}?</p>
