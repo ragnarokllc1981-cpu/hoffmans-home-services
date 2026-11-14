@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import { SITE, BASE } from './scripts/site.js';
 const cities = JSON.parse(fs.readFileSync('./cities.json', 'utf8'));
 export default defineConfig({
-  build: { rollupOptions: { input: Object.fromEntries([['main', 'index.html'], ...cities.map(c => [c, `${c}/index.html`])]) } },
+  build: { rollupOptions: { input: Object.fromEntries([['main', 'index.html'], ['book', 'book/index.html'], ['book-thanks', 'book/thanks/index.html'], ...cities.map(c => [c, `${c}/index.html`])]) } },
   base: BASE,
   plugins: [tailwindcss(), { name: 'site-url', transformIndexHtml: h => h.replaceAll('%SITE%', SITE) }],
   server: { proxy: { '/api': 'http://localhost:8787' } },
