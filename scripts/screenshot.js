@@ -2,13 +2,13 @@
 import puppeteer from 'puppeteer-core';
 const url = process.argv[2] || 'http://localhost:4173/';
 const browser = await puppeteer.launch({
-  executablePath: process.env.CHROME || '/usr/bin/google-chrome', headless: 'new',
+  executablePath: process.env.CHROME || '/usr/bin/google-chrome', headless: true,
   args: ['--no-sandbox', '--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist'],
 });
 const page = await browser.newPage();
 const errors = [];
 page.on('console', m => { if (['error', 'warning'].includes(m.type())) errors.push(`${m.type()}: ${m.text()}`); });
-page.on('pageerror', e => errors.push('pageerror: ' + e.message));
+page.on('pageerror', e => errors.push('pageerror: ' + (e instanceof Error ? e.message : String(e))));
 await page.setViewport({ width: 1440, height: 900 });
 // ?peel= is hero scroll progress: 0 closed, 1 walls folded down and roof lifted.
 for (const [name, peel] of [['hero-closed', 0], ['hero-peeled', 1]]) {

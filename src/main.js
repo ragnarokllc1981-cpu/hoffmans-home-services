@@ -3,7 +3,7 @@ import { renderIcons } from './icons.js';
 import { animate, inView, stagger } from 'motion';
 import fallback from './services.fallback.json';
 
-document.getElementById('yr').textContent = new Date().getFullYear();
+document.getElementById('yr').textContent = String(new Date().getFullYear());
 renderIcons();
 
 // Hero (guard so a WebGL failure never breaks the page)
@@ -38,7 +38,7 @@ function renderServices(services) {
     </article>`).join('');
   renderIcons(grid);
   document.getElementById('service-select').innerHTML = (services.length === 1 ? '' : '<option value="">Select…</option>') + services.map(s => `<option value="${esc(s.id)}">${esc(s.title)}</option>`).join('');
-  grid.querySelectorAll('.service-card').forEach(card => {
+  (/** @type {NodeListOf<HTMLElement>} */ (grid.querySelectorAll('.service-card'))).forEach(card => {
     card.addEventListener('pointermove', e => {
       const r = card.getBoundingClientRect();
       const x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
@@ -59,11 +59,11 @@ const BASE = import.meta.env.BASE_URL;
 if (import.meta.env.VITE_API_ENABLED) try { navigator.sendBeacon?.('/api/pageview', new Blob([JSON.stringify({ path: location.pathname, ref: document.referrer })], { type: 'application/json' })); } catch {}
 
 // Booking form
-const form = document.getElementById('booking-form');
+const form = /** @type {HTMLFormElement} */ (document.getElementById('booking-form'));
 const status = document.getElementById('form-status');
 form.addEventListener('submit', async e => {
   e.preventDefault();
-  const data = Object.fromEntries(new FormData(form));
+  const data = /** @type {Record<string, string>} */ (Object.fromEntries(new FormData(form)));
   if (!data.name || !data.phone || !data.email || !data.service || !data.county) {
     status.className = 'sm:col-span-2 text-sm text-ember'; status.textContent = 'Please fill in name, phone, email, service, and county.'; return;
   }

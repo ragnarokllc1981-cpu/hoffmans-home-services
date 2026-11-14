@@ -1,8 +1,8 @@
 import puppeteer from 'puppeteer-core';
 const [base, out] = process.argv.slice(2);
-const b = await puppeteer.launch({ executablePath: process.env.CHROME || '/usr/bin/google-chrome', headless: 'new', args: ['--no-sandbox'] });
+const b = await puppeteer.launch({ executablePath: process.env.CHROME || '/usr/bin/google-chrome', headless: true, args: ['--no-sandbox'] });
 const p = await b.newPage(); const errs = [];
-p.on('response', r => r.status() >= 400 && errs.push(r.status() + ' ' + r.url())); p.on('pageerror', e => errs.push(e.message));
+p.on('response', r => r.status() >= 400 && errs.push(r.status() + ' ' + r.url())); p.on('pageerror', e => errs.push(e instanceof Error ? e.message : String(e)));
 await p.setViewport({ width: 1440, height: 900 });
 for (const c of ['livonia','westland','canton','plymouth','farmington-hills','novi','redford','dearborn']) {
   const r = await p.goto(base + c + '/', { waitUntil: 'networkidle0' });

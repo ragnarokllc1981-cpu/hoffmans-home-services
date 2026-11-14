@@ -180,15 +180,15 @@ export function initHero(canvas) {
   });
 
   // --- System tabs + labels
-  const labelEls = [...document.querySelectorAll('[data-label]')].map(el => ({ el, s: systems[el.dataset.label] })).filter(l => l.s);
+  const labelEls = [.../** @type {NodeListOf<HTMLElement>} */ (document.querySelectorAll('[data-label]'))].map(el => ({ el, s: systems[el.dataset.label] })).filter(l => l.s);
   // Hover/focus previews a system; click/tap pins it (click again to unpin).
   let hovered = null, pinned = null, highlight = null;
   const refresh = () => {
     highlight = hovered ?? pinned;
-    document.querySelectorAll('[data-sys]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.sys === pinned)));
+    (/** @type {NodeListOf<HTMLElement>} */ (document.querySelectorAll('[data-sys]'))).forEach(b => b.setAttribute('aria-pressed', String(b.dataset.sys === pinned)));
     labelEls.forEach(({ el, s }) => el.classList.toggle('is-active', s.id === highlight));
   };
-  document.querySelectorAll('[data-sys]').forEach(b => {
+  (/** @type {NodeListOf<HTMLElement>} */ (document.querySelectorAll('[data-sys]'))).forEach(b => {
     const id = b.dataset.sys;
     b.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') { hovered = id; refresh(); } });
     b.addEventListener('pointerleave', () => { hovered = null; refresh(); });
@@ -282,14 +282,14 @@ export function initHero(canvas) {
 
     // Phones: the copy covers the house, so fade it while a system is selected.
     copyFade += (((highlight && vw < 640) ? 0.12 : 1) - copyFade) * k8;
-    if (copy) { copy.style.opacity = copyFade; copy.style.pointerEvents = copyFade < 0.5 ? 'none' : ''; }
-    if (shade) shade.style.opacity = copyFade;
+    if (copy) { copy.style.opacity = String(copyFade); copy.style.pointerEvents = copyFade < 0.5 ? 'none' : ''; }
+    if (shade) shade.style.opacity = String(copyFade);
 
     // Only the selected system's label shows, pinned over its anchor.
     for (const { el, s } of labelEls) {
       s.anchor.getWorldPosition(v).project(camera);
       const visible = s.focus > 0.02 && v.z < 1;
-      el.style.opacity = visible ? s.focus : 0;
+      el.style.opacity = String(visible ? s.focus : 0);
       el.style.visibility = visible ? 'visible' : 'hidden';
       if (visible) el.style.transform = `translate(${((v.x + 1) / 2) * vw}px, ${((1 - v.y) / 2) * vh}px) translate(-50%, -100%)`;
     }

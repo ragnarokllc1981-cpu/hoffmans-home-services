@@ -36,7 +36,7 @@ app.post('/api/leads', async (req, res) => {
   if (errors.length) return res.status(400).json({ error: `Invalid: ${errors.join(', ')}` });
   const record = { id: crypto.randomUUID(), receivedAt: new Date().toISOString(), ip: req.ip, ...lead };
   await append('leads.jsonl', record);
-  const fwd = await forwardToBookingBoss(record).catch(e => ({ forwarded: false, error: e.message }));
+  const fwd = /** @type {{ forwarded: boolean, error?: string }} */ (await forwardToBookingBoss(record).catch(e => ({ forwarded: false, error: e.message })));
   if (fwd.forwarded || fwd.error) await append('booking-boss-forwards.jsonl', { id: record.id, at: new Date().toISOString(), ...fwd });
   res.status(201).json({ ok: true, id: record.id });
 });

@@ -37,8 +37,8 @@ const { client_id: clientId, client_secret: clientSecret } = creds.installed ?? 
 if (!clientId || !clientSecret) throw new Error('That file is not an OAuth client (no client_id/client_secret).');
 
 const server = createServer();
-await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
-const redirectUri = `http://127.0.0.1:${server.address().port}`;
+await new Promise(resolve => server.listen(0, '127.0.0.1', () => resolve()));
+const redirectUri = `http://127.0.0.1:${/** @type {import('node:net').AddressInfo} */ (server.address()).port}`;
 const url = 'https://accounts.google.com/o/oauth2/v2/auth?' + new URLSearchParams({
   client_id: clientId, redirect_uri: redirectUri, response_type: 'code', scope: SCOPE,
   access_type: 'offline', prompt: 'consent', login_hint: LOGIN_HINT,
