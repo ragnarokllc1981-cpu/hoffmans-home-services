@@ -12,7 +12,8 @@ import { homedir } from 'node:os';
 import { join } from 'node:path';
 
 const SCOPE = 'https://www.googleapis.com/auth/gmail.send';
-const LOGIN_HINT = 'ragnarokllc1981@gmail.com';
+// The Cloud project's consent screen is Internal, so only the Workspace account can authorize.
+const LOGIN_HINT = 'hello@cozyandcleanhome.com';
 
 function findClientFile() {
   if (process.argv[2]) return process.argv[2];
