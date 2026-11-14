@@ -1,7 +1,7 @@
 // Render the 3D hero (no overlay) into public/hero-fallback.webp (1440x900) and public/og-image.jpg (1200x630).
 import puppeteer from 'puppeteer-core';
 const url = process.argv[2] || 'http://localhost:4173/';
-const b = await puppeteer.launch({ executablePath: '/usr/bin/google-chrome', headless: 'new',
+const b = await puppeteer.launch({ executablePath: process.env.CHROME || '/usr/bin/google-chrome', headless: 'new',
   args: ['--no-sandbox', '--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist'] });
 const p = await b.newPage();
 const shoot = async (w, h, opts, css = '') => {
