@@ -68,9 +68,9 @@ function render(b) {
     icon: 'circle-alert', tone: 'zinc', kicker: b.status === 'expired' ? 'Hold ended' : 'Booking closed',
     title: 'This booking isn’t active.',
     lead: b.status === 'expired'
-      ? 'The payment window for this time ran out, so it was released. Please request a new time or give us a call.'
-      : 'This booking was cancelled. If you were charged, the refund is on its way to your card. Please request a new time or give us a call.',
-    actions: '<a href="/#book" class="rounded-xl bg-volt text-ink font-black px-6 py-3.5 hover:scale-105 transition">Request a time</a>'
+      ? 'The payment window for this time ran out, so it was released. Please book a new time or give us a call.'
+      : 'This booking was cancelled. If you were charged, the refund is on its way to your card. Please book a new time or give us a call.',
+    actions: '<a href="/#book" class="rounded-xl bg-volt text-ink font-black px-6 py-3.5 hover:scale-105 transition">Book a new time</a>'
   });
 }
 
@@ -79,8 +79,8 @@ function notFound() {
     icon: 'circle-alert', tone: 'zinc', kicker: 'Booking not found', title: 'We couldn’t find that booking.',
     lead: mode === 'thanks'
       ? 'If you just paid, check your email for the confirmation, or call us and we’ll sort it out.'
-      : 'The link may be incomplete. Please request a time or call us.',
-    actions: '<a href="/#book" class="rounded-xl bg-volt text-ink font-black px-6 py-3.5 hover:scale-105 transition">Request a time</a>'
+      : 'The link may be incomplete. Please book a time or call us.',
+    actions: '<a href="/#book" class="rounded-xl bg-volt text-ink font-black px-6 py-3.5 hover:scale-105 transition">Book a new time</a>'
   });
 }
 

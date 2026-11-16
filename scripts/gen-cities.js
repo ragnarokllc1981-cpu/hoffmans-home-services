@@ -71,7 +71,7 @@ ${body}
       </ul>
       <div class="mt-12 rounded-2xl border border-volt/40 bg-volt/5 p-6 sm:p-8">
         <p class="font-display text-2xl font-black">Ready to schedule in ${c.name}?</p>
-        <p class="mt-2 text-zinc-300">We serve Wayne and Oakland Counties only. <a href="../#book" class="text-volt underline">Request a booking online</a> or call <a href="tel:+13134891202" class="text-volt underline">313-489-1202</a>.</p>
+        <p class="mt-2 text-zinc-300">We serve Wayne and Oakland Counties only. <a href="../#book" class="text-volt underline">Book and pay online</a> or call <a href="tel:+13134891202" class="text-volt underline">313-489-1202</a>.</p>
       </div>
       <p class="mt-8 text-sm text-zinc-500">Also serving: ${cities.filter(o => o.slug !== c.slug).map(o => `<a href="../${o.slug}/" class="hover:text-volt underline">${o.name}</a>`).join(' · ')}</p>
     </article>
