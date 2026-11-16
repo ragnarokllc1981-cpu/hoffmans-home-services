@@ -135,9 +135,69 @@
       </div>
     </section>
 
-    <!-- BOOKING -->
+    <!-- BOOKING: online booking (src/booking.js) when it's switched on, else the request form -->
     <section id="book" class="mx-auto max-w-3xl px-4 py-24">
       <p class="text-volt font-mono text-sm">// BOOK</p>
+      <div id="online-booking" hidden>
+        <h2 class="font-display text-4xl sm:text-5xl font-black mt-2">Book your inspection.</h2>
+        <p class="mt-3 text-lg font-extralight text-zinc-400">Pick a time, see your price, pay online. You'll get a confirmation email right away.</p>
+        <form id="bk-form" class="mt-10 grid gap-8" novalidate>
+          <fieldset class="bk-card">
+            <legend class="bk-step"><span>1</span>Your home</legend>
+            <div class="grid gap-3 sm:grid-cols-2" role="radiogroup" aria-label="Home type">
+              <label class="bk-choice"><input type="radio" name="property_type" value="house" checked /><i data-lucide="house"></i><span><strong>House</strong><small>Priced by finished sq ft</small></span></label>
+              <label class="bk-choice"><input type="radio" name="property_type" value="condo" /><i data-lucide="building-2"></i><span><strong>Condo or townhouse</strong><small>One price, any size</small></span></label>
+            </div>
+            <label class="field mt-4" id="bk-sqft-field"><span>Finished square feet <span class="font-light text-zinc-500">(don't count the basement)</span></span><input name="sqft" inputmode="numeric" autocomplete="off" placeholder="e.g. 1,850" /></label>
+            <div class="mt-6 flex items-baseline justify-between gap-4 border-t border-zinc-800 pt-4">
+              <span id="bk-tier" class="text-sm text-zinc-400">Enter the square footage to see your price</span>
+              <span id="bk-price" class="font-display text-4xl font-black text-volt"></span>
+            </div>
+          </fieldset>
+
+          <fieldset class="bk-card">
+            <legend class="bk-step"><span>2</span>Date and time</legend>
+            <p class="text-sm text-zinc-400">Inspections take about 3 to 3½ hours. Booked days are greyed out.</p>
+            <div class="mt-4 flex items-center justify-between">
+              <button type="button" id="bk-prev" class="bk-nav" aria-label="Earlier dates"><i data-lucide="chevron-left"></i></button>
+              <span id="bk-range" class="text-sm font-mono uppercase tracking-widest text-zinc-400"></span>
+              <button type="button" id="bk-next" class="bk-nav" aria-label="Later dates"><i data-lucide="chevron-right"></i></button>
+            </div>
+            <div id="bk-days" class="mt-4 grid grid-cols-3 sm:grid-cols-6 gap-2" role="radiogroup" aria-label="Day"></div>
+            <div id="bk-times" class="mt-4 grid grid-cols-2 gap-3" role="radiogroup" aria-label="Start time"></div>
+          </fieldset>
+
+          <fieldset class="bk-card">
+            <legend class="bk-step"><span>3</span>Your details</legend>
+            <div class="grid gap-4 sm:grid-cols-2">
+              <label class="field">Name<input name="name" required autocomplete="name" /></label>
+              <label class="field">Phone<input name="phone" type="tel" required autocomplete="tel" /></label>
+              <label class="field sm:col-span-2">Email<input name="email" type="email" required autocomplete="email" /></label>
+              <label class="field sm:col-span-2">Property address<input name="address" required autocomplete="street-address" placeholder="Street, city, ZIP" /></label>
+              <label class="field">County<select name="county" required><option value="">Select…</option><option>Wayne</option><option>Oakland</option></select></label>
+              <label class="field sm:col-span-2"><span>Anything we should know? <span class="font-light text-zinc-500">(optional: lockbox, pets, agent contact)</span></span><textarea name="notes" rows="3"></textarea></label>
+            </div>
+            <div class="absolute -left-[9999px] w-px h-px overflow-hidden" aria-hidden="true"><label>Leave blank<input name="_hp_fax_x" type="text" tabindex="-1" autocomplete="off" data-lpignore="true" data-1p-ignore /></label></div>
+          </fieldset>
+
+          <fieldset class="bk-card">
+            <legend class="bk-step"><span>4</span>Payment</legend>
+            <div class="grid gap-3">
+              <label class="bk-choice"><input type="radio" name="payment_option" value="full" checked /><i data-lucide="credit-card"></i><span><strong>Pay in full now</strong><small id="bk-full-note">By card, Apple Pay or Google Pay</small></span></label>
+              <label class="bk-choice"><input type="radio" name="payment_option" value="deposit" /><i data-lucide="banknote"></i><span><strong>Pay half now, the rest in cash</strong><small id="bk-deposit-note">Cash balance due at the inspection</small></span></label>
+            </div>
+          </fieldset>
+
+          <div class="bk-card !py-6">
+            <dl id="bk-summary" class="grid gap-2 text-sm"></dl>
+            <button type="submit" id="bk-submit" class="mt-6 w-full inline-flex items-center justify-center gap-2 rounded-xl bg-volt text-ink font-black py-4 text-lg hover:scale-[1.02] transition disabled:opacity-40 disabled:hover:scale-100"><i data-lucide="lock"></i><span>Continue to payment</span></button>
+            <p id="bk-status" class="mt-4 text-sm" role="status" aria-live="polite"></p>
+            <p class="mt-2 text-xs text-zinc-500">We hold your time for 24 hours while you pay. Secure checkout by Stripe. Questions? Call <a href="tel:+13134891202" class="text-volt">313-489-1202</a>.</p>
+          </div>
+        </form>
+      </div>
+
+      <div id="request-booking">
       <h2 class="font-display text-4xl sm:text-5xl font-black mt-2">Request a booking.</h2>
       <p class="mt-3 text-zinc-400">Tell us what you need. We'll confirm a time within one business day.</p>
       <form id="booking-form" class="mt-8 grid gap-4 sm:grid-cols-2" novalidate>
@@ -152,6 +212,7 @@
         <button type="submit" class="sm:col-span-2 rounded-xl bg-volt text-ink font-black py-4 text-lg hover:scale-[1.02] transition">Send Request</button>
         <p id="form-status" class="sm:col-span-2 text-sm" role="status"></p>
       </form>
+      </div>
     </section>
   </main>
 

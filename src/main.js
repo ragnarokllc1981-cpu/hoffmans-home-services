@@ -2,6 +2,7 @@ import './style.css';
 import { renderIcons } from './icons.js';
 import { animate, inView, stagger } from 'motion';
 import fallback from './services.fallback.json';
+import './booking.js';
 
 document.getElementById('yr').textContent = String(new Date().getFullYear());
 renderIcons();

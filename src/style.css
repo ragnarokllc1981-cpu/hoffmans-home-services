@@ -39,3 +39,28 @@
 
 .area-list li { @apply flex items-center gap-1.5; }
 .area-list svg { @apply h-4 w-4 shrink-0 text-volt; }
+
+/* Online booking (src/booking.js) */
+.bk-card { @apply relative rounded-2xl border border-zinc-800 bg-zinc-950 px-6 pt-4 pb-6 shadow-[0_24px_48px_-24px_rgba(0,0,0,0.8)]; }
+.bk-step { @apply flex items-center gap-3 px-2 -mx-2 font-display text-xl font-black; }
+.bk-step span { @apply grid h-8 w-8 place-items-center rounded-full bg-volt text-sm text-ink; }
+.bk-choice { @apply flex cursor-pointer items-center gap-4 rounded-xl border border-zinc-700 bg-zinc-900 p-4 transition-colors hover:border-zinc-500; }
+.bk-choice input { @apply sr-only; }
+.bk-choice svg { @apply h-6 w-6 shrink-0 text-zinc-400; }
+.bk-choice span { @apply flex flex-col; }
+.bk-choice small { @apply text-sm font-extralight text-zinc-400; }
+.bk-choice:has(input:checked) { @apply border-volt bg-volt/10; }
+.bk-choice:has(input:checked) svg { @apply text-volt; }
+.bk-choice:has(input:focus-visible) { @apply outline-2 outline-offset-2 outline-volt; }
+.bk-nav { @apply grid h-10 w-10 place-items-center rounded-full border border-zinc-700 text-zinc-300 transition hover:border-volt hover:text-volt disabled:opacity-30 disabled:hover:border-zinc-700 disabled:hover:text-zinc-300; }
+.bk-nav svg { @apply h-5 w-5; }
+.bk-day { @apply flex flex-col items-center rounded-xl border border-zinc-700 bg-zinc-900 py-2 transition-colors hover:border-zinc-500 disabled:cursor-not-allowed disabled:border-zinc-900 disabled:bg-transparent disabled:text-zinc-700; }
+.bk-day small { @apply font-mono text-[11px] uppercase tracking-widest text-zinc-500; }
+.bk-day strong { @apply font-display text-2xl font-black; }
+.bk-day[aria-checked="true"], .bk-time[aria-checked="true"] { @apply border-volt bg-volt text-ink; }
+.bk-day[aria-checked="true"] small { @apply text-ink; }
+.bk-time { @apply flex items-center justify-center gap-2 rounded-xl border border-zinc-700 bg-zinc-900 py-4 font-display text-lg font-black transition-colors hover:border-zinc-500 disabled:cursor-not-allowed disabled:text-zinc-600 disabled:line-through disabled:hover:border-zinc-700; }
+.bk-time svg { @apply h-5 w-5; }
+.bk-summary-row { @apply flex justify-between gap-4; }
+.bk-summary-row dt { @apply text-zinc-400; }
+.bk-summary-row dd { @apply text-right font-semibold; }
