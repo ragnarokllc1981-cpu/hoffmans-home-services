@@ -16,7 +16,6 @@ app.use(express.json({ limit: '20kb', type: ['application/json', 'text/plain'] }
 const append = (file, obj) => fs.appendFile(path.join(DATA, file), JSON.stringify(obj) + '\n');
 
 const SERVICES = ['inspection'];
-const COUNTIES = ['Wayne', 'Oakland'];
 const clip = (v, n) => String(v ?? '').trim().slice(0, n);
 
 app.post('/api/leads', async (req, res) => {
@@ -24,7 +23,7 @@ app.post('/api/leads', async (req, res) => {
   if (b.website || b._hp_fax_x) return res.json({ ok: true }); // honeypot (the form's field is _hp_fax_x)
   const lead = {
     name: clip(b.name, 120), phone: clip(b.phone, 40), email: clip(b.email, 200),
-    service: clip(b.service, 40), county: clip(b.county, 20),
+    service: clip(b.service, 40),
     preferredDate: clip(b.preferredDate, 20), message: clip(b.message, 2000),
   };
   const errors = [];
@@ -32,7 +31,6 @@ app.post('/api/leads', async (req, res) => {
   if (lead.phone.replace(/\D/g, '').length < 10) errors.push('phone');
   if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(lead.email)) errors.push('email');
   if (!SERVICES.includes(lead.service)) errors.push('service');
-  if (!COUNTIES.includes(lead.county)) errors.push('county (Wayne or Oakland only)');
   if (errors.length) return res.status(400).json({ error: `Invalid: ${errors.join(', ')}` });
   const record = { id: crypto.randomUUID(), receivedAt: new Date().toISOString(), ip: req.ip, ...lead };
   await append('leads.jsonl', record);

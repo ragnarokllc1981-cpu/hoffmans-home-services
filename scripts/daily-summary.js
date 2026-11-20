@@ -15,8 +15,8 @@ const count = (arr, k) => arr.reduce((m, x) => (m[x[k] || '(none)'] = (m[x[k] ||
 const summary = {
   window: { hours, from: new Date(since).toISOString(), to: new Date().toISOString() },
   pageviews: { total: views.length, byPath: count(views, 'path'), topReferrers: count(views.filter(v => v.ref), 'ref') },
-  leads: { total: leads.length, byService: count(leads, 'service'), byCounty: count(leads, 'county'),
-    list: leads.map(l => ({ at: l.receivedAt, name: l.name, phone: l.phone, email: l.email, service: l.service, county: l.county, preferredDate: l.preferredDate })) },
+  leads: { total: leads.length, byService: count(leads, 'service'),
+    list: leads.map(l => ({ at: l.receivedAt, name: l.name, phone: l.phone, email: l.email, service: l.service, preferredDate: l.preferredDate })) },
 };
 if (args.includes('--json')) { console.log(JSON.stringify(summary, null, 2)); process.exit(0); }
 const fmt = o => Object.entries(o).map(([k, v]) => `  - ${k}: ${v}`).join('\n') || '  (none)';
@@ -26,6 +26,4 @@ ${fmt(summary.pageviews.byPath)}
 Leads: ${leads.length}
 By service:
 ${fmt(summary.leads.byService)}
-By county:
-${fmt(summary.leads.byCounty)}
-${summary.leads.list.map(l => `  • ${l.at} | ${l.name} | ${l.phone} | ${l.email} | ${l.service} | ${l.county}${l.preferredDate ? ' | wants ' + l.preferredDate : ''}`).join('\n')}`);
+${summary.leads.list.map(l => `  • ${l.at} | ${l.name} | ${l.phone} | ${l.email} | ${l.service}${l.preferredDate ? ' | wants ' + l.preferredDate : ''}`).join('\n')}`);

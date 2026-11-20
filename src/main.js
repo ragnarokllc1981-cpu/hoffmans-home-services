@@ -64,12 +64,11 @@ const status = document.getElementById('form-status');
 form.addEventListener('submit', async e => {
   e.preventDefault();
   const data = /** @type {Record<string, string>} */ (Object.fromEntries(new FormData(form)));
-  if (!data.name || !data.phone || !data.email || !data.service || !data.county) {
-    status.className = 'sm:col-span-2 text-sm text-ember'; status.textContent = 'Please fill in name, phone, email, service, and county.'; return;
+  if (!data.name || !data.phone || !data.email || !data.service) {
+    status.className = 'sm:col-span-2 text-sm text-ember'; status.textContent = 'Please fill in name, phone, email, and service.'; return;
   }
   if (data._hp_fax_x) { status.className = 'sm:col-span-2 text-sm text-volt font-semibold'; status.textContent = "Got it! We'll reach out within one business day."; return; } // honeypot: never fail silently
   const bad = msg => { status.className = 'sm:col-span-2 text-sm text-ember'; status.textContent = msg; };
-  if (!['Wayne', 'Oakland'].includes(data.county)) return bad('Sorry, we only serve Wayne and Oakland Counties, MI.');
   if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(data.email) || data.phone.replace(/\D/g, '').length < 10) return bad('Please enter a valid email and 10-digit phone number.');
   const serviceTitle = document.querySelector(`#service-select option[value="${CSS.escape(data.service)}"]`)?.textContent || data.service;
   status.className = 'sm:col-span-2 text-sm text-zinc-400'; status.textContent = 'Sending…';
@@ -84,7 +83,7 @@ form.addEventListener('submit', async e => {
       _subject: `[Booking Request] ${serviceTitle} - ${data.name}`,
       _template: 'table', _captcha: 'false', _honey: '', _replyto: data.email,
       Name: data.name, Phone: data.phone, Email: data.email, Service: serviceTitle, 'Service ID': data.service,
-      County: data.county, 'Preferred Date': data.preferredDate || '(none)', 'Address / Details': data.message || '(none)',
+      'Preferred Date': data.preferredDate || '(none)', 'Address / Details': data.message || '(none)',
       'Page': location.href, 'Submitted At': new Date().toLocaleString('en-US', { timeZone: 'America/Detroit' }) + ' ET',
     };
     const res = await fetch('https://formsubmit.co/ajax/ragnarokllc1981@gmail.com', {

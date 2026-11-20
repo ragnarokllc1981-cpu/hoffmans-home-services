@@ -137,7 +137,6 @@ function problems() {
   if (value('phone').replace(/\D/g, '').length < 10) out.push(['phone', 'a 10-digit phone number']);
   if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(value('email'))) out.push(['email', 'a valid email']);
   if (value('address').length < 6) out.push(['address', 'the property address']);
-  if (!value('county')) out.push(['county', 'the county']);
   return out;
 }
 
@@ -161,7 +160,7 @@ async function submit(/** @type {SubmitEvent} */ e) {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
       body: JSON.stringify({
-        name: value('name'), phone: value('phone'), email: value('email'), address: value('address'), county: value('county'),
+        name: value('name'), phone: value('phone'), email: value('email'), address: value('address'),
         property_type: value('property_type'), sqft: value('property_type') === 'house' ? sqftNumber() : null,
         payment_option: value('payment_option'), notes: value('notes'), slot_start: state.slot?.start,
         page: location.href.split('?')[0], _hp_fax_x: value('_hp_fax_x'),
