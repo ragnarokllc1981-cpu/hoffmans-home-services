@@ -38,10 +38,7 @@ for (const c of cities) {
   <link rel="stylesheet" href="/src/style.css" />
 </head>
 <body class="bg-ink text-zinc-100 antialiased">
-  <div id="flash-banner" class="fixed top-0 inset-x-0 z-50 bg-volt text-ink text-xs sm:text-sm font-bold tracking-wide text-center py-1.5">
-    ⚡ NOW BOOKING ${c.name.toUpperCase()} INSPECTIONS · CALL <a href="tel:+13134891202" class="underline">313-489-1202</a>
-  </div>
-  <header class="fixed top-8 inset-x-0 z-40 bg-ink/80 backdrop-blur">
+  <header class="fixed top-0 inset-x-0 z-40 bg-ink/80 backdrop-blur">
     <nav class="mx-auto max-w-7xl px-4 py-2 flex items-center justify-between">
       <a href="../" class="font-display text-lg sm:text-xl font-black tracking-tight">HOFFMAN'S<span class="text-volt">.</span> <span class="hidden sm:inline font-light text-zinc-400">HOME SERVICES</span></a>
       <div class="flex items-center gap-2 sm:gap-5 text-sm">
@@ -51,7 +48,7 @@ for (const c of cities) {
       </div>
     </nav>
   </header>
-  <main class="pt-28">
+  <main class="pt-20">
     <section class="relative overflow-hidden border-b border-zinc-800 bg-gradient-to-br from-zinc-950 via-ink to-zinc-900">
       <div class="mx-auto max-w-5xl px-4 py-16 sm:py-24">
         <p class="city-in inline-flex rounded-full border border-volt/40 bg-volt/10 px-3 py-1 text-xs font-semibold text-volt">ICA CERTIFIED · ${c.county.toUpperCase()} COUNTY, MI</p>
@@ -71,7 +68,7 @@ ${body}
       </ul>
       <div class="mt-12 rounded-2xl border border-volt/40 bg-volt/5 p-6 sm:p-8">
         <p class="font-display text-2xl font-black">Ready to schedule in ${c.name}?</p>
-        <p class="mt-2 text-zinc-300">We serve Wayne and Oakland Counties only. <a href="../#book" class="text-volt underline">Book and pay online</a> or call <a href="tel:+13134891202" class="text-volt underline">313-489-1202</a>.</p>
+        <p class="mt-2 text-zinc-300"><a href="../#book" class="text-volt underline">Book and pay online</a> or call <a href="tel:+13134891202" class="text-volt underline">313-489-1202</a>.</p>
       </div>
       <p class="mt-8 text-sm text-zinc-500">Also serving: ${cities.filter(o => o.slug !== c.slug).map(o => `<a href="../${o.slug}/" class="hover:text-volt underline">${o.name}</a>`).join(' · ')}</p>
     </article>
@@ -80,7 +77,7 @@ ${body}
     ${areasList('../')}
     <div class="mx-auto max-w-7xl px-4 flex flex-col sm:flex-row gap-4 justify-between">
       ${NAP}
-      <p>© 2026 Hoffman's Home Services, a DBA of Ragnarok LLC · Serving Wayne &amp; Oakland Counties</p>
+      <p>© 2026 Hoffman's Home Services, a DBA of Ragnarok LLC</p>
     </div>
   </footer>
   <script type="module" src="/src/city.js"></script>

@@ -13,10 +13,6 @@
 }
 .service-card { transform-style: preserve-3d; }
 
-/* Top banner: flashes a few times on load, then holds steady (WCAG 2.2.2: no endless flashing). */
-@keyframes banner-flash { 0%, 49% { background-color: var(--color-volt); } 50%, 100% { background-color: var(--color-ember); } }
-#flash-banner { animation: banner-flash 1.2s steps(1) 4; }
-@media (prefers-reduced-motion: reduce) { #flash-banner { animation: none; } }
 
 /* Exploded-view labels (positioned per frame by hero.js) */
 .sys-label {

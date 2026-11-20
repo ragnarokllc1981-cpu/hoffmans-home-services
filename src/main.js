@@ -19,7 +19,6 @@ if (!matchMedia('(prefers-reduced-motion: reduce)').matches) ('requestIdleCallba
 // Motion: hero copy entrance + reveal-on-scroll
 animate('.hero-in', { opacity: [0, 1], y: [30, 0] }, { delay: stagger(0.12), duration: 0.8, ease: [0.16, 1, 0.3, 1] });
 inView('#trust', () => { animate('.trust-card', { opacity: [0, 1], y: [40, 0] }, { delay: stagger(0.1), duration: 0.6 }); });
-inView('#area', () => { animate('.county', { opacity: [0, 1], scale: [0.85, 1] }, { delay: stagger(0.15), duration: 0.7 }); });
 
 // Services: live content from /api/content, bundled fallback
 // Lucide icon per service id; unknown ids fall back to the emoji in services.json.
