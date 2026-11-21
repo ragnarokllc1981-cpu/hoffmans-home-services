@@ -14,7 +14,7 @@ export function initHero(canvas) {
   scene.fog = new THREE.Fog(0x07080b, 18, 40);
   const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 120);
 
-  scene.add(new THREE.HemisphereLight(0x8899ff, 0x221100, 0.8));
+  const hemi = new THREE.HemisphereLight(0x8899ff, 0x221100, 0.8); scene.add(hemi);
   const key = new THREE.DirectionalLight(0xffffff, 1.6); key.position.set(6, 10, 8); scene.add(key);
   const rim = new THREE.PointLight(0xc6ff2e, 30, 20); rim.position.set(-5, 4, -3); scene.add(rim);
 
@@ -173,10 +173,12 @@ export function initHero(canvas) {
 
   // Every material gets a base opacity so dimming (legend hover) and fades compose cleanly.
   const GHOST = new THREE.Color(0x64748b); // faint slate "x-ray" tint for unselected systems
+  // Glow color for a selected system: its own color, lifted so dark parts (roof shingles) still light up.
+  const brighten = c => { const hsl = { h: 0, s: 0, l: 0 }; c.getHSL(hsl); return new THREE.Color().setHSL(hsl.h, hsl.s, Math.max(hsl.l, 0.55)); };
   for (const s of Object.values(systems)) s.group.traverse(o => {
     const m = o.material; if (!m || m.userData.base !== undefined) return;
     m.transparent = true;
-    m.userData = { base: m.opacity, color: m.color.clone(), glow: m.emissiveIntensity ?? 0, metal: m.metalness ?? 0, emissive: m.emissive?.clone() };
+    m.userData = { base: m.opacity, color: m.color.clone(), glow: m.emissiveIntensity ?? 0, metal: m.metalness ?? 0, emissive: m.emissive?.clone(), bright: brighten(m.color) };
   });
 
   // --- System tabs + labels
@@ -217,7 +219,7 @@ export function initHero(canvas) {
   window.addEventListener('resize', resize); resize();
 
   const copy = document.getElementById('hero-copy'), shade = document.getElementById('hero-shade');
-  let copyFade = 1;
+  let copyFade = 1, lift = 0;
   const v = new THREE.Vector3();
   const clock = new THREE.Clock();
   function frame() {
@@ -244,8 +246,8 @@ export function initHero(canvas) {
       m.color.lerpColors(m.userData.color, GHOST, g);
       if (m.metalness !== undefined) m.metalness = m.userData.metal * (1 - g);
       if (m.emissive) { // selected system glows in its own color
-        m.emissive.lerpColors(m.userData.emissive, m.userData.color, focus * 0.45);
-        m.emissiveIntensity = Math.max(m.userData.glow, focus) * (1 - g);
+        m.emissive.lerpColors(m.userData.emissive, m.userData.bright, focus * 0.7);
+        m.emissiveIntensity = Math.max(m.userData.glow, focus * 0.8) * (1 - g);
       }
     });
     for (const id of ['structure', 'electrical', 'plumbing', 'hvac', 'foundation']) setLook(systems[id].group, 1, systems[id].dim, systems[id].focus);
@@ -257,15 +259,15 @@ export function initHero(canvas) {
       const k = ease(clamp01(wallFold * 1.4 - i * 0.08));
       pivot.rotation.x = dir.z * k * 1.5; pivot.rotation.z = -dir.x * k * 1.5;
       pivot.position.y = -k * 0.2;
-      setLook(pivot, 1 - k * 0.85, exterior.dim, exterior.focus * 0.5);
+      setLook(pivot, 1 - k * 0.85, exterior.dim, exterior.focus * 0.6);
     });
     // Roof halves lift and spread as you scroll; selecting Roof closes it back up.
     const spread = e * (1 - roof.focus);
     roofs.forEach(({ pivot, s }) => {
       pivot.rotation.x = s * (pitch + spread * 0.5); pivot.position.y = H + ROOF + spread * 3.5; pivot.position.z = s * spread * 3;
-      setLook(pivot, 1 - spread * 0.8, roof.dim, roof.focus * 0.5);
+      setLook(pivot, 1 - spread * 0.8, roof.dim, roof.focus);
     });
-    gables.forEach(({ g, s }) => { g.position.x = s * (W / 2 + 0.07 + spread * 3); setLook(g, 1 - spread, roof.dim, roof.focus * 0.5); });
+    gables.forEach(({ g, s }) => { g.position.x = s * (W / 2 + 0.07 + spread * 3); setLook(g, 1 - spread, roof.dim, roof.focus * 0.6); });
 
     pulses.forEach(p => { p.userData.t = (p.userData.t + dt * 0.35) % 1; p.position.copy(p.userData.curve.getPointAt(p.userData.t)); });
     fan.rotation.y += dt * 4;
@@ -278,12 +280,15 @@ export function initHero(canvas) {
     const lx = -3.2 * (1 - m);
     camera.position.set(Math.sin(ang) * r + lx + 0.2 * (1 - m), 6 + e * 1.5 + m * 3 + mouseY * -2, Math.cos(ang) * r);
     camera.lookAt(lx, 0.8, 0);
+    // Brighten the scene while a system is selected so the highlighted part reads clearly.
+    lift += ((highlight ? 1 : 0) - lift) * k8;
+    hemi.intensity = 0.8 + lift * 1.0; key.intensity = 1.6 + lift * 1.2;
     renderer.render(scene, camera);
 
     // Phones: the copy covers the house, so fade it while a system is selected.
     copyFade += (((highlight && vw < 640) ? 0.12 : 1) - copyFade) * k8;
     if (copy) { copy.style.opacity = String(copyFade); copy.style.pointerEvents = copyFade < 0.5 ? 'none' : ''; }
-    if (shade) shade.style.opacity = String(copyFade);
+    if (shade) shade.style.opacity = String(Math.min(copyFade, 1 - lift * 0.55)); // lift the dark text backdrop off the house
 
     // Only the selected system's label shows, pinned over its anchor.
     for (const { el, s } of labelEls) {
