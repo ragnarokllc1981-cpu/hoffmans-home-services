@@ -3,7 +3,6 @@
 // Env: GOOGLE_OAUTH_CLIENT_ID, GOOGLE_OAUTH_CLIENT_SECRET, GOOGLE_OAUTH_REFRESH_TOKEN (gmail.send scope), LEAD_EMAIL.
 
 const SERVICES = { inspection: 'ICA Certified Home Inspections' };
-const COUNTIES = ['Wayne', 'Oakland'];
 const clip = (v, n) => String(v ?? '').replace(/[\r\n]+/g, ' ').trim().slice(0, n);
 
 async function gmailSend({ to, replyTo, subject, text }) {
@@ -33,7 +32,7 @@ export default async function handler(req, res) {
   if (b.website || b._hp_fax_x) return res.json({ ok: true }); // honeypot (the form's field is _hp_fax_x)
   const lead = {
     name: clip(b.name, 120), phone: clip(b.phone, 40), email: clip(b.email, 200),
-    service: clip(b.service, 40), county: clip(b.county, 20),
+    service: clip(b.service, 40),
     preferredDate: clip(b.preferredDate, 20), message: String(b.message ?? '').trim().slice(0, 2000), page: clip(b.page, 300),
   };
   const errors = [];
@@ -41,7 +40,6 @@ export default async function handler(req, res) {
   if (lead.phone.replace(/\D/g, '').length < 10) errors.push('phone');
   if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(lead.email)) errors.push('email');
   if (!SERVICES[lead.service]) errors.push('service');
-  if (!COUNTIES.includes(lead.county)) errors.push('county (Wayne or Oakland only)');
   if (errors.length) return res.status(400).json({ error: `Invalid: ${errors.join(', ')}` });
 
   const env = process.env;
@@ -51,7 +49,7 @@ export default async function handler(req, res) {
   const service = SERVICES[lead.service];
   const text = [
     `Name: ${lead.name}`, `Phone: ${lead.phone}`, `Email: ${lead.email}`, `Service: ${service}`, `Service ID: ${lead.service}`,
-    `County: ${lead.county}`, `Preferred Date: ${lead.preferredDate || '(none)'}`, `Address / Details: ${lead.message || '(none)'}`,
+    `Preferred Date: ${lead.preferredDate || '(none)'}`, `Address / Details: ${lead.message || '(none)'}`,
     `Page: ${lead.page || '(unknown)'}`, `Submitted At: ${new Date().toLocaleString('en-US', { timeZone: 'America/Detroit' })} ET`,
   ].join('\n');
   try {

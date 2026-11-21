@@ -2,7 +2,7 @@
 
 Site for Hoffman's Home Services (a DBA of Ragnarok LLC, Livonia, MI). It covers ICA-certified home inspections. Service area: Wayne & Oakland Counties.
 
-Stack (all free/OSS): Vite, Tailwind CSS v4, Three.js (procedural house cross-section hero), GSAP (flashing top banner), Motion (`animate`/`inView`), Express API.
+Stack (all free/OSS): Vite, Tailwind CSS v4, Three.js (procedural house cross-section hero), Motion (`animate`/`inView`), Express API.
 
 ## Run
 ```
