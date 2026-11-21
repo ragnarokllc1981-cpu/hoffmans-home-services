@@ -274,19 +274,20 @@ export function initHero(canvas) {
 
     // Orbit + parallax; house sits right of the hero copy.
     // Phones with a system selected: center the house and pull back so the whole system fits.
-    const m = (1 - copyFade) / 0.88;
+    const m = (1 - copyFade) / 0.93;
     const ang = 0.6 + Math.sin(t * 0.15) * 0.35 + mouseX * 0.5;
     const r = (19 - e * 2.5) * (1 + m * 0.9);
     const lx = -3.2 * (1 - m);
     camera.position.set(Math.sin(ang) * r + lx + 0.2 * (1 - m), 6 + e * 1.5 + m * 3 + mouseY * -2, Math.cos(ang) * r);
     camera.lookAt(lx, 0.8, 0);
+    scene.fog.near = r - 1; scene.fog.far = r + 21; // fog follows the camera, so pulling back on phones doesn't darken the house
     // Brighten the scene while a system is selected so the highlighted part reads clearly.
     lift += ((highlight ? 1 : 0) - lift) * k8;
     hemi.intensity = 0.8 + lift * 1.0; key.intensity = 1.6 + lift * 1.2;
     renderer.render(scene, camera);
 
     // Phones: the copy covers the house, so fade it while a system is selected.
-    copyFade += (((highlight && vw < 640) ? 0.12 : 1) - copyFade) * k8;
+    copyFade += (((highlight && vw < 640) ? 0.07 : 1) - copyFade) * k8;
     if (copy) { copy.style.opacity = String(copyFade); copy.style.pointerEvents = copyFade < 0.5 ? 'none' : ''; }
     if (shade) shade.style.opacity = String(Math.min(copyFade, 1 - lift * 0.55)); // lift the dark text backdrop off the house
 
